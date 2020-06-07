@@ -1,0 +1,56 @@
+﻿@inject NavigationManager NavManager
+@inject IJSRuntime Runtime
+<nav class="navbar navbar-expand-lg navbar-dark black">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">SIH Dashboard</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse black-text" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    Home
+                    <!--span class="sr-only">(current)</!--span-->
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+            </li>
+
+        </ul>
+        @if (GlobalUser.UID == null)
+        {
+            <a class="nav-link navbar-right" href="/signin" style="margin-left:-10px">Login</a>
+        }
+        else
+        {
+            <a class="nav-link navbar-right" href="/userinfo" style="margin-left:-10px">@GlobalUser.Email</a>
+        }
+
+
+    </div>
+
+    <!-- Collapsible content -->
+
+</nav>
+
+<style>
+    body {
+        background-image: url('./images/blur.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: 0% 0%;
+    }
+</style>
