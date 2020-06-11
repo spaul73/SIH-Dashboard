@@ -12,14 +12,14 @@
         <div class="card-body view view-cascade gradient-card-header rounded-lg">
 
             <h3 class="dark-grey-text text-center">
-                <strong style="color:black">Find Hostels</strong>
+                <strong style="color:black">Find School</strong>
             </h3>
 
             <form class="mr-auto mb-4">
 
                 <div>
                     <br />
-                    <input type="text" list="states" class="form-control heavy-rain-gradient" placeholder="Enter Hostel Location or Name" @bind-value="SearchQuery">
+                    <input type="text" list="states" class="form-control heavy-rain-gradient" placeholder="Enter School Location or Name" @bind-value="SearchQuery">
                     <datalist id="states" style="display:none">
                         @foreach (var s in states)
                         {

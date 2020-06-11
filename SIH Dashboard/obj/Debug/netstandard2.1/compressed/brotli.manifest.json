@@ -1,7 +1,7 @@
 {
   "FilesToCompress": [
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\RCC9Dnjc1efdrlj27oWNJVQA5wMbwSCPjPu7WYc1GTk=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\C8lLft5DZRglMiaoSX6h0jmKgrSbCpHcjmU6RFG3apc=.hash",
       "Source": "C:\\Users\\shive\\Desktop\\Test\\SIH Dashboard\\SIH Dashboard\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\SIH Dashboard.dll",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/SIH Dashboard.dll.br"
     },
@@ -256,7 +256,7 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/Microsoft.JSInterop.WebAssembly.dll.br"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\h-yaehSyawcZCqvX3lXgv1grJIJkUdhFAfEceg2iVcs=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\aeW8th3NnsomR4WPszjSLNQopD0-gkPxSlo3en5n-B8=.hash",
       "Source": "C:\\Users\\shive\\Desktop\\Test\\SIH Dashboard\\SIH Dashboard\\obj\\Debug\\netstandard2.1\\blazor\\unlinked\\SIH Dashboard.pdb",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/_bin\/SIH Dashboard.pdb.br"
     },
@@ -281,7 +281,7 @@
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.webassembly.js.br"
     },
     {
-      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\1fJurYKiUhypO1z34hKloZYTdt4d9nOJhVu5iQGQUX0=.hash",
+      "InputSource": "obj\\Debug\\netstandard2.1\\integrity\\Mdj0_KuAznQjFQKr4xF-iqndjqjIWAT6vfgY1eAUxZU=.hash",
       "Source": "C:\\Users\\shive\\Desktop\\Test\\SIH Dashboard\\SIH Dashboard\\obj\\Debug\\netstandard2.1\\blazor\\blazor.boot.json",
       "Target": "obj\\Debug\\netstandard2.1\\compressed\\_framework\/blazor.boot.json.br"
     }
