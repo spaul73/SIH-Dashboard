@@ -1,12 +1,12 @@
 ﻿var firebaseConfig = {
-    apiKey: "AIzaSyDcsQ666_CZBapqloYGFgCxqClyICv8V-c",
-    authDomain: "hostel-hub-42ccb.firebaseapp.com",
-    databaseURL: "https://hostel-hub-42ccb.firebaseio.com",
-    projectId: "hostel-hub-42ccb",
-    storageBucket: "hostel-hub-42ccb.appspot.com",
-    messagingSenderId: "794049151568",
-    appId: "1:794049151568:web:0a80943829803b27df4755",
-    measurementId: "G-4KZBWTVE15"
+    apiKey: "AIzaSyDo48RL0DQtlrq8uOp-X-BBBqJRcYRUJDg",
+    authDomain: "trans-setup-257313.firebaseapp.com",
+    databaseURL: "https://trans-setup-257313.firebaseio.com",
+    projectId: "trans-setup-257313",
+    storageBucket: "trans-setup-257313.appspot.com",
+    messagingSenderId: "199528645527",
+    appId: "1:199528645527:web:2f53a1b9eaeca0bfc3bad2",
+    measurementId: "G-HC050E3EZC"
 };
 
 
