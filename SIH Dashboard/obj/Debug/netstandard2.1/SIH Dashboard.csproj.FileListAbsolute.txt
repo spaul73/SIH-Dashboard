@@ -349,6 +349,8 @@ C:\Users\shive\Desktop\Test\SIH Dashboard\SIH Dashboard\obj\Debug\netstandard2.1
 C:\Users\shive\Desktop\Test\SIH Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\Tqh1Da_iTRQJEZUGAsMNFuZ4hf1PMf13WApRZod_uw4=.hash
 C:\Users\shive\Desktop\Test\SIH Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\HQeN_ZfHAERO_uW0fP0J9J3WV1hQ3vUIOWbqGSYBPp8=.hash
 C:\Users\shive\Desktop\Test\SIH Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\21Eo58gZGe1h56KPVgJXZnNVIdVd6CjTrjnPM3RFMGI=.hash
-C:\Users\shive\Desktop\Test\SIH Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\C8lLft5DZRglMiaoSX6h0jmKgrSbCpHcjmU6RFG3apc=.hash
-C:\Users\shive\Desktop\Test\SIH Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\aeW8th3NnsomR4WPszjSLNQopD0-gkPxSlo3en5n-B8=.hash
-C:\Users\shive\Desktop\Test\SIH Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\Mdj0_KuAznQjFQKr4xF-iqndjqjIWAT6vfgY1eAUxZU=.hash
+C:\Users\shive\Desktop\Test\SIH Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\RazorDeclaration\Pages\SchoolResultsPage.razor.g.cs
+C:\Users\shive\Desktop\Test\SIH Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\Razor\Pages\SchoolResultsPage.razor.g.cs
+C:\Users\shive\Desktop\Test\SIH Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\SY_0snTA4gV8zMGeUq_e3QroRPREihATX6GjSylUOpo=.hash
+C:\Users\shive\Desktop\Test\SIH Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\W6L9VzfW2ysvmI0sSHHjXIc8nWQpYx2nQOqHz9s93EI=.hash
+C:\Users\shive\Desktop\Test\SIH Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\JbSwsToF_94tkbJRumOewgcz1h_4UwCz90gC3-dCyY0=.hash
