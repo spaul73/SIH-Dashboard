@@ -709,9 +709,6 @@ C:\Users\shive\Desktop\Test\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1
 C:\Users\shive\Desktop\Test\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\SIH Dashboard.pdb
 C:\Users\shive\Desktop\Test\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\RazorDeclaration\Pages\UserInfoPage.razor.g.cs
 C:\Users\shive\Desktop\Test\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\Razor\Pages\UserInfoPage.razor.g.cs
-C:\Users\shive\Desktop\Test\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\Lx6gWSy6dfYITA5d9OKiHPl0ViTkrs29zhVheR2opLs=.hash
-C:\Users\shive\Desktop\Test\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\2pmRmEgqVuKm9uhJcudgf9U2DtmpXiyj_p_PZljNdqA=.hash
-C:\Users\shive\Desktop\Test\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\hLF9qSR85MgzqNnShK9DoOVX1hF8oDaHa5r7x9fG31w=.hash
 D:\SIH\SIH-Dashboard\SIH Dashboard\bin\Debug\netstandard2.1\Properties\launchSettings.json
 D:\SIH\SIH-Dashboard\SIH Dashboard\bin\Debug\netstandard2.1\SIH Dashboard.StaticWebAssets.xml
 D:\SIH\SIH-Dashboard\SIH Dashboard\bin\Debug\netstandard2.1\SIH Dashboard.dll
@@ -1070,3 +1067,6 @@ D:\SIH\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\SIH Dashboard.pdb
 D:\SIH\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\affl_LOkMCeBgiPHWVDKpVSftIDUss4SKw50tex_x88=.hash
 D:\SIH\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\EQ2BW3seVnt-ER3Mi6ZLvpnnNmGVXiXI2AVq_rSCd7M=.hash
 D:\SIH\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\Bhj6yDrsI-Exxg7sVqFaInRIIOwtJJddq33O1ypzRws=.hash
+C:\Users\shive\Desktop\Test\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\Q8jumNom7-w0J6sjuurTvZk7z_sjsoHIxP9VpQsdxhA=.hash
+C:\Users\shive\Desktop\Test\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\gU-fM8e4U65fDwiynzloU-GzyOljB5xmTJMtRPIj3JE=.hash
+C:\Users\shive\Desktop\Test\SIH-Dashboard\SIH Dashboard\obj\Debug\netstandard2.1\integrity\JDlS8hNbiMwrLinAcb3ZFEEAT1srtr46jz4kDBjfFB4=.hash

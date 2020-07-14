@@ -6,7 +6,7 @@
   "linkerEnabled": false,
   "resources": {
     "assembly": {
-      "SIH Dashboard.dll": "sha256-affl+LOkMCeBgiPHWVDKpVSftIDUss4SKw50tex+x88=",
+      "SIH Dashboard.dll": "sha256-Q8jumNom7\/w0J6sjuurTvZk7z+sjsoHIxP9VpQsdxhA=",
       "Microsoft.Extensions.DependencyInjection.Abstractions.dll": "sha256-ycn\/UHLnjC77BNvsurP4mkuYP8oud1oVyfSSlZKMymc=",
       "netstandard.dll": "sha256-\/zcPVM75OAY+joGVM8yIC1gO1SFYWP1CFERgQ8PJkfA=",
       "System.Xml.Linq.dll": "sha256-IPbQMdJxZXdk8HTlaPyXdQ6Zb82iZLphnM74yO4EURQ=",
@@ -59,7 +59,7 @@
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-dwm+rKImjhxtOmHHVpSxOgl2oh2R26xOWihLaZSv7Vs="
     },
     "pdb": {
-      "SIH Dashboard.pdb": "sha256-EQ2BW3seVnt\/ER3Mi6ZLvpnnNmGVXiXI2AVq+rSCd7M="
+      "SIH Dashboard.pdb": "sha256-gU\/fM8e4U65fDwiynzloU\/GzyOljB5xmTJMtRPIj3JE="
     },
     "runtime": {
       "dotnet.3.2.0.js": "sha256-mPoqx7XczFHBWk3gRNn0hc9ekG1OvkKY4XiKRY5Mj5U=",
