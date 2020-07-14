@@ -1,4 +1,5 @@
 ﻿@inject IJSRuntime Runtime
+@inject NavigationManager NavManager
 
 <nav class="navbar navbar-expand-lg navbar-dark black">
 
@@ -33,6 +34,10 @@
         @if (GlobalUser.UID == null)
         {
             <a class="nav-link navbar-right" href="/signin" style="margin-left:-10px">Login</a>
+        }
+        else if(!GlobalUser.IsVerified && NavManager.Uri.IndexOf("/verifyaccount/") <0)
+        {
+            NavManager.NavigateTo("/verifyaccount/" + GlobalUser.Email);
         }
         else
         {

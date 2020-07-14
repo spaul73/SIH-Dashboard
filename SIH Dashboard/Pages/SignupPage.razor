@@ -1,6 +1,7 @@
 ﻿@page "/signup"
 @inject IJSRuntime JsRuntime
 @inject NavigationManager NavigationManager
+
 @using System.Text.RegularExpressions
 
 <NavBar/>
@@ -19,7 +20,7 @@
             <div class="col-md-6">
 
                 <!-- Default form register -->
-                <form class="text-center" action="#!">
+                <!--form class="text-center" action="#!"-->
 
                     <p class="h4 mb-4">Sign up</p>
 
@@ -68,8 +69,8 @@
 
 
                     <!-- Sign up button -->
-                    <button type="button" class="btn btn-info my-4 btn-block blue-gradient waves-effect" @onclick="SignUp">Sign Up</button>
-                    <a href="/signin"><button class="btn purple-gradient white-text  waves-effect" >Login Instead</button></a>
+                    <button type="submit"  class="btn btn-info my-4 btn-block blue-gradient waves-effect" tabindex="0" @onclick="SignUp">Sign Up</button>
+                    <button @onclick="SigninClick" class="btn purple-gradient white-text  waves-effect" >Login Instead</button>
 
                     <hr>
 
@@ -83,7 +84,7 @@
 
 
 
-                </form>
+                <!-- /-form -->
                 <!-- Default form register -->
 
             </div>
@@ -177,7 +178,7 @@
     }
     public static bool IsValidEmail(string email)
     {
-        return Regex.IsMatch(email, @"\A[a-z0-9]+([-._][a-z0-9]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,4}\z")
+        return Regex.IsMatch(email, @"\A[a-z0-9]+([-._][a-z0-9]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,4}\z",RegexOptions.IgnoreCase)
             && Regex.IsMatch(email, @"^(?=.{1,64}@.{4,64}$)(?=.{6,100}$).*");
     }
 
@@ -190,5 +191,9 @@
             Role = (Roles)Enum.Parse(typeof(Roles),Role,true),
             Phone = long.Parse(phoneNumber)
         });
+    }
+    private void SigninClick()
+    {
+        NavigationManager.NavigateTo("/signin");
     }
 }
