@@ -28,4 +28,18 @@ namespace SIH_Dashboard
         Admin,VisitingOfficial,Teacher,Student
     }
 
+    public class Schools
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+    }
+
+    public class Feedbacks
+    {
+        public string Date { get; set; }
+        public UserData User { get; set; }
+        public Schools School { get; set; }
+        public string Feedback { get; set; }
+    }
 }

@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shive\\Desktop\\Test\\SIH-Dashboard\\SIH Dashboard\\SIH Dashboard.csproj": {}
+    "D:\\SIH\\SIH-Dashboard\\SIH Dashboard\\SIH Dashboard.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shive\\Desktop\\Test\\SIH-Dashboard\\SIH Dashboard\\SIH Dashboard.csproj": {
+    "D:\\SIH\\SIH-Dashboard\\SIH Dashboard\\SIH Dashboard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shive\\Desktop\\Test\\SIH-Dashboard\\SIH Dashboard\\SIH Dashboard.csproj",
+        "projectUniqueName": "D:\\SIH\\SIH-Dashboard\\SIH Dashboard\\SIH Dashboard.csproj",
         "projectName": "SIH Dashboard",
-        "projectPath": "C:\\Users\\shive\\Desktop\\Test\\SIH-Dashboard\\SIH Dashboard\\SIH Dashboard.csproj",
-        "packagesPath": "C:\\Users\\shive\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shive\\Desktop\\Test\\SIH-Dashboard\\SIH Dashboard\\obj\\",
+        "projectPath": "D:\\SIH\\SIH-Dashboard\\SIH Dashboard\\SIH Dashboard.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "D:\\SIH\\SIH-Dashboard\\SIH Dashboard\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\shive\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
@@ -80,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400-preview-015151\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
