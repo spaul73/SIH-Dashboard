@@ -16,9 +16,16 @@ namespace SIH_Dashboard
     public class UserData
     {
         public string Name { get; set; }
-        public string LastName { get; set; }
         public long Phone { get; set; }
+        public Roles Role { get; set; }
+        public string DOB { get; set; }
+        public bool Male { get; set; }
         public string Email { get; set; }
+    }
+
+    public enum Roles
+    {
+        Admin,VisitingOfficial,Teacher,Student
     }
 
 }

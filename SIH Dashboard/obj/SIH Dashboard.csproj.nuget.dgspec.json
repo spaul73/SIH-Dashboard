@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shive\\Desktop\\Test\\SIH Dashboard\\SIH Dashboard\\SIH Dashboard.csproj": {}
+    "C:\\Users\\shive\\Desktop\\Test\\SIH-Dashboard\\SIH Dashboard\\SIH Dashboard.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shive\\Desktop\\Test\\SIH Dashboard\\SIH Dashboard\\SIH Dashboard.csproj": {
+    "C:\\Users\\shive\\Desktop\\Test\\SIH-Dashboard\\SIH Dashboard\\SIH Dashboard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shive\\Desktop\\Test\\SIH Dashboard\\SIH Dashboard\\SIH Dashboard.csproj",
+        "projectUniqueName": "C:\\Users\\shive\\Desktop\\Test\\SIH-Dashboard\\SIH Dashboard\\SIH Dashboard.csproj",
         "projectName": "SIH Dashboard",
-        "projectPath": "C:\\Users\\shive\\Desktop\\Test\\SIH Dashboard\\SIH Dashboard\\SIH Dashboard.csproj",
+        "projectPath": "C:\\Users\\shive\\Desktop\\Test\\SIH-Dashboard\\SIH Dashboard\\SIH Dashboard.csproj",
         "packagesPath": "C:\\Users\\shive\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shive\\Desktop\\Test\\SIH Dashboard\\SIH Dashboard\\obj\\",
+        "outputPath": "C:\\Users\\shive\\Desktop\\Test\\SIH-Dashboard\\SIH Dashboard\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
           "C:\\Users\\shive\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"

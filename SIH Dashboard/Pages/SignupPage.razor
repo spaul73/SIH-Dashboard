@@ -33,12 +33,19 @@
 
                     <div class="form-row mb-4">
                         <div class="col">
-                            <!-- First name -->
-                            <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name" @bind="firstName">
+                            <!-- name -->
+                            <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Full name" @bind="Name">
                         </div>
                         <div class="col">
                             <!-- Last name -->
-                            <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name"  @bind="lastName">
+                            <input type="text" list="states" class="form-control heavy-rain-gradient" placeholder="Role" @bind-value="Role">
+                            <datalist id="states" style="display:none">
+                                @foreach (var s in Enum.GetNames(typeof(Roles)))
+                                {
+                                    <option value="@s"></option>
+
+                                }
+                            </datalist>
                         </div>
                     </div>
 
@@ -105,8 +112,8 @@
     string ErrorMessage { get; set; }
     string email { get; set; } = "";
     string password { get; set; } = "";
-    public string firstName { get; set; } = "";
-    public string lastName { get; set; } = "";
+    public string Name { get; set; } = "";
+    public string Role { get; set; } = "";
     public string phoneNumber { get; set; } = "";
     private async void SignUp()
     {
@@ -148,9 +155,14 @@
             ErrorMessage = "Invalid Email.";
             return false;
         }
-        else if (firstName.Length < 3)
+        else if (Name.Length < 3)
         {
             ErrorMessage = "Name too short.";
+            return false;
+        }
+        else if(Role.Length<=0 || Enum.GetNames(typeof(Roles)).ToList().IndexOf(Role)<0)
+        {
+            ErrorMessage = "Role Selected is not valid.";
             return false;
         }
         else if (phoneNumber.Length != 10 && !string.IsNullOrWhiteSpace(phoneNumber))
@@ -174,8 +186,8 @@
         DatabaseHelper.WriteData(JsRuntime, "Users/" + GlobalUser.UID, new UserData()
         {
             Email = email,
-            Name = firstName,
-            LastName = lastName,
+            Name = Name,
+            Role = (Roles)Enum.Parse(typeof(Roles),Role,true),
             Phone = long.Parse(phoneNumber)
         });
     }
