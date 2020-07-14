@@ -21,6 +21,7 @@ namespace SIH_Dashboard
         public string DOB { get; set; }
         public bool Male { get; set; }
         public string Email { get; set; }
+        public bool RoleVerified { get; set; }
     }
 
     public enum Roles
