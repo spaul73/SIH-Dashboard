@@ -1,6 +1,6 @@
 ﻿@page "/userinfo"
 @inject IJSRuntime Runtime
-
+@inject NavigationManager NavManager
 <NavBar/>
     <!-- Card Regular -->
 <br />
@@ -29,7 +29,7 @@
             </p>
             <br />
             <p>Terms and Conditions, Eula , Copyrights Information</p>
-            <button type="submit" class="btn btn-info my-4 btn-block blue-gradient  waves-effect">Log Out</button>
+            <button type="submit" @onclick="Logout" class="btn btn-info my-4 btn-block blue-gradient  waves-effect">Log Out</button>
         </div>
     </div>
     <!--Card-->
@@ -51,7 +51,7 @@ else
         if (firstRender)
         {
             if(data==null)
-            LoadUser();
+                LoadUser();
 
         }
     }
@@ -60,6 +60,14 @@ else
         data= await DatabaseHelper.ReadData<UserData>
             (Runtime, "Users/" + GlobalUser.UID);
         StateHasChanged();
+    }
+    void Logout()
+    {
+        GlobalUser.UID = null;
+        GlobalUser.IsVerified = false;
+        GlobalUser.Email = null;
+        NavManager.NavigateTo("/");
+
     }
 }
 
