@@ -35,10 +35,10 @@
         {
             <a class="nav-link navbar-right" href="/signin" style="margin-left:-10px">Login</a>
         }
-        else if(!GlobalUser.IsVerified && NavManager.Uri.IndexOf("/verifyaccount/") <0)
-        {
-            NavManager.NavigateTo("/verifyaccount/" + GlobalUser.Email);
-        }
+        //else if(!GlobalUser.IsVerified && NavManager.Uri.IndexOf("/verifyaccount/") <0)
+        //{
+        //    NavManager.NavigateTo("/verifyaccount/" + GlobalUser.Email);
+        //}
         else
         {
             <a class="nav-link navbar-right" href="/userinfo" style="margin-left:-10px">@GlobalUser.Email</a>
