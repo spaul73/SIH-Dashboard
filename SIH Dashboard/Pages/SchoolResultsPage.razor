@@ -4,7 +4,8 @@
 
 <h3>SchoolResultsPage-> @Name</h3>
 
-@code {
+@code 
+{
     [Parameter]
     public string Name { get; set; }
         protected override Task OnInitializedAsync()
@@ -12,3 +13,12 @@
             return base.OnInitializedAsync();
         }
 }
+
+<style>
+    body {
+        background-image: url('./images/blur.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100vh;
+        background-position: 0% 0%;
+    }
+</style>
