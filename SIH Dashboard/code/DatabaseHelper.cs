@@ -30,6 +30,10 @@ namespace SIH_Dashboard
         {
             return await Runtime.InvokeAsync<T>("ReadData", path);
         }
+        public async static void PushData<T>(IJSRuntime Runtime, string path, T data)
+        {
+            await Runtime.InvokeVoidAsync("PushData", path, data);
+        }
         
     }
 }

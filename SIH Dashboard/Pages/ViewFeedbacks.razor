@@ -1,0 +1,55 @@
+﻿@page "/user/feedbacks"
+@inject IJSRuntime Runtime
+@inject NavigationManager NavManager
+<NavBar />
+<!-- Card Regular -->
+<br />
+<br />
+
+@if (GlobalUser.UID != null && feeds != null)
+{
+    <ul>
+    @foreach (var feed in feeds)
+    {
+        <li>Date: @feed.Date</li>
+        <li>SchoolId: @feed.SchoolId</li>
+        <li>Feedback: @feed.Feedback</li>
+    }
+    </ul>
+}
+else
+{
+    <br />
+    <p>Failed to fetch profile data</p>
+}
+
+
+@code
+{
+    private List<Feedbacks> feeds;
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            if (feeds == null)
+                //LoadFeed();
+
+        }
+    }
+    //async void LoadFeed()
+    //{
+    //    feeds = await DatabaseHelper.ReadData<List<Feedbacks>>
+    //        (Runtime, "Feedbacks/" + GlobalUser.UID);
+    //    StateHasChanged();
+    //}
+}
+
+<style>
+    body {
+        background-image: url('./images/blur.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100vh;
+        background-position: 0% 0%;
+    }
+</style>

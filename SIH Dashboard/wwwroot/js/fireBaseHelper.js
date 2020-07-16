@@ -136,3 +136,8 @@ async function ReadData(path)
 {
     return await database.ref(path).once('value');
 }
+
+function PushData(path, val)
+{
+    database.ref(path).push().set(val);
+}
