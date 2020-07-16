@@ -1,0 +1,46 @@
+﻿@page "/attendence"
+@inject IJSRuntime Runtime
+@inject NavigationManager NavManager
+
+@if (GlobalUser.UID == null)
+{
+    NavManager.NavigateTo("/signin");
+
+}
+else
+{
+    if (data != null)
+    {
+    <p>@data.Role.ToString()</p>
+    }
+    else
+    {
+        <p> Fetching Data</p>
+    }
+}
+
+@code
+{
+    UserData data { get; set; } = null;
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+
+        if (firstRender)
+        {
+            if (GlobalUser.UID != null)
+            {
+                if (data == null)
+                    GetData();
+            }
+        }
+        return base.OnAfterRenderAsync(firstRender);
+
+    }
+    async void GetData()
+    {
+        data = await DatabaseHelper.ReadData<UserData>
+                (Runtime, "Users/" + GlobalUser.UID) ;
+        StateHasChanged();
+    }
+}
+
