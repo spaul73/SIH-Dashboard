@@ -11,6 +11,14 @@ else
 {
     if (data != null)
     {
+        if(data.Role==Roles.Student)
+        {
+            if(studentData==null)
+            {
+                //create student record
+            }
+        }
+
     <p>@data.Role.ToString()</p>
     }
     else
@@ -22,6 +30,8 @@ else
 @code
 {
     UserData data { get; set; } = null;
+    StudentRecord studentData { get; set; } = null;
+
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
 
@@ -40,7 +50,27 @@ else
     {
         data = await DatabaseHelper.ReadData<UserData>
                 (Runtime, "Users/" + GlobalUser.UID) ;
+        switch (data.Role)
+        {
+            case Roles.Admin:
+                break;
+            case Roles.VisitingOfficial:
+                break;
+            case Roles.Teacher:
+                break;
+            case Roles.Student:
+                GetStudentData().GetAwaiter().GetResult();
+                break;
+            default:
+                break;
+        }
         StateHasChanged();
     }
+    async Task GetStudentData()
+    {
+        studentData = await DatabaseHelper.ReadData<StudentRecord>
+                (Runtime, "Records/" + GlobalUser.UID);
+    }
+
 }
 

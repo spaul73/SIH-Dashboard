@@ -42,4 +42,21 @@ namespace SIH_Dashboard
         public string SchoolId { get; set; }
         public string Feedback { get; set; }
     }
+    public class StudentRecord
+    {
+        public string Uid { get; set; }
+        public int Session { get; set; }
+        public string Class { get; set; }
+        public int SchoolCode { get; set; }
+    }
+    public class StudentAttendence
+    {
+        SubjectAttendence[] SubjectAttendence { get; set; }
+    }
+    public class SubjectAttendence
+    {
+        public string SubjectName { get; set; }
+        public int TotalClasses { get; set; }
+        public int TotalPresent { get; set; }
+    }
 }
