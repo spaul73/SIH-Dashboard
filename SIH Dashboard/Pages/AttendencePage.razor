@@ -2,6 +2,8 @@
 @inject IJSRuntime Runtime
 @inject NavigationManager NavManager
 
+<NavBar/>
+
 @if (GlobalUser.UID == null)
 {
     NavManager.NavigateTo("/signin");
@@ -15,6 +17,7 @@ else
         {
             if(studentData==null)
             {
+                <NewStudentRecordDialog/>
                 //create student record
             }
         }
@@ -59,17 +62,18 @@ else
             case Roles.Teacher:
                 break;
             case Roles.Student:
-                GetStudentData().GetAwaiter().GetResult();
+                GetStudentData();
                 break;
             default:
                 break;
         }
         StateHasChanged();
     }
-    async Task GetStudentData()
+    async void GetStudentData()
     {
         studentData = await DatabaseHelper.ReadData<StudentRecord>
                 (Runtime, "Records/" + GlobalUser.UID);
+        StateHasChanged();
     }
 
 }
