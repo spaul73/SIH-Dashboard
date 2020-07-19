@@ -34,10 +34,10 @@ namespace SIH_Dashboard
         {
             await Runtime.InvokeVoidAsync("PushData", path, data);
         }
-        /*public async static Task<T> ReadList<T>(IJSRuntime Runtime, string path)
+        public async static Task<T> ReadList<T>(IJSRuntime Runtime, string path)
         {
             return await Runtime.InvokeAsync<T>("ReadList", path);
-        }*/
+        }
         public async static void DisplayFeedback(IJSRuntime Runtime, string path)
         {
             await Runtime.InvokeVoidAsync("DisplayFeedback", path);

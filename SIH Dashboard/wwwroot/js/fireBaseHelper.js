@@ -142,30 +142,15 @@ function PushData(path, val)
     database.ref(path).push().set(val);
 }
 
-//Returns promise of all children as a single promise. Wasn't able to convert it to List<> in C# so added another method to display through JS 
+//Returns list of objects to be used in conjuction with ReadList() wrapper
 async function ReadList(path)
 {
     return await database.ref(path).once('value').then(function (snapshot) {
         var lst = [];
         snapshot.forEach(function (childSnapshot) {
-            var id = childSnapshot.key;
-            var promise = database.ref(path).child(id).once('value').then(function (snap) { });
-            lst.push(promise);
+            var obj = childSnapshot.val();
+            lst.push(obj);
         });
-        return Promise.all(lst);
-    });
-}
-
-function DisplayFeedback(path)
-{
-    database.ref(path).once('value').then(function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-            var childData = childSnapshot.val();
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode("Date:" + childData.date + "SchoolID:" + childData.schoolId + "Feedback:" + childData.feedback);
-            node.appendChild(textnode);
-            document.getElementById("main").appendChild(node);
-            document.getElementById("default").style.display = "none";
-        });
+        return lst;
     });
 }

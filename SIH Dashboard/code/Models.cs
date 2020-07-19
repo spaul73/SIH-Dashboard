@@ -39,7 +39,7 @@ namespace SIH_Dashboard
     public class Feedbacks
     {
         public string Date { get; set; }
-        public string SchoolId { get; set; }
+        public int SchoolCode { get; set; }
         public string Feedback { get; set; }
     }
     public class StudentRecord
