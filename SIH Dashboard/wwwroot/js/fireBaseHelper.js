@@ -156,19 +156,3 @@ async function ReadList(path) {
         return Promise.all(lst);
     });
 }
-
-
-function DisplayFeedback(path)
-{
-    database.ref(path).once('value').then(function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-            var childData = childSnapshot.val();
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode("Date:" + childData.date + "SchoolID:" + childData.schoolId + "Feedback:" + childData.feedback);
-            node.appendChild(textnode);
-            document.getElementById("main").appendChild(node);
-            document.getElementById("default").style.display = "none";
-        });
-        return lst;
-    });
-}
