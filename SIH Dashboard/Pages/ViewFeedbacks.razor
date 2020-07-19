@@ -30,7 +30,6 @@ else
         base.OnAfterRender(firstRender);
         if (firstRender)
         {
-            DatabaseHelper.DisplayFeedback(Runtime, "Feedbacks/" + GlobalUser.UID);
             LoadFeed();
         }
     }
