@@ -51,7 +51,7 @@ namespace SIH_Dashboard
     }
     public class StudentAttendence
     {
-        SubjectAttendence[] SubjectAttendence { get; set; }
+        public List<SubjectAttendence> SubjectAttendence { get; set; }
     }
     public class SubjectAttendence
     {

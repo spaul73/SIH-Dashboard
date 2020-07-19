@@ -1,15 +1,54 @@
-﻿<DualCardHolder>
-    <DualCard TotalColumns="4">
-        cool
+﻿@inject IJSRuntime Runtime
+<br />
+<DualCardHolder>
+    <DualCard  CardColor="mdb-color darken-3" TotalColumns="4">
+        @if (record != null)
+        {
+        <div class="white-text">
+            <p class="white-text flex-center">Roll Number : @record.RollNumber </p>
+            <br />
+            <p class="white-text flex-center">School Code : @record.SchoolCode</p>
+            <br />
+            <p class="white-text flex-center">Session : @record.Session</p>
+        </div>
+        }
     </DualCard>
-    <DualCard TotalColumns="8">
-        student
+    <DualCard  CardColor="mdb-color darken-3" TotalColumns="8">
+        @if (attendence != null)
+        {
+            <TableHolder ColumnNames="col" HeaderColor="blue">
+                @foreach(var sub in attendence.SubjectAttendence)
+                {
+                <TableItem>
+                    <TableValue>@sub.SubjectName</TableValue>
+                    <TableValue>@sub.TotalPresent</TableValue>
+                    <TableValue>@sub.TotalClasses</TableValue>
+
+                </TableItem>
+                }
+            </TableHolder>
+        }
     </DualCard>
 </DualCardHolder>
 @code 
 {
-    void FetchAttendence()
-    {
+    StudentRecord record;
+    StudentAttendence attendence;
 
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+            FetchAttendence();
+    }
+
+    string[] col = new string[] { "Subject", "Present", "Total Classes" };
+
+    async void FetchAttendence()
+    {
+        record=await DatabaseHelper.ReadData<StudentRecord>(Runtime, "Records/" + GlobalUser.UID);
+        attendence =await DatabaseHelper.ReadData<StudentAttendence>(Runtime, "Attendence/"+record.SchoolCode+"/"
+    +record.Session+"/"+record.Class+@"/"+record.RollNumber);
+        StateHasChanged();
     }
 }
