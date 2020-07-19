@@ -5,21 +5,30 @@
 <!-- Card Regular -->
 <br />
 <br />
-@if (GlobalUser.UID != null && feeds != null)
+
+@if (GlobalUser.UID == null)
 {
-    <ul class="white-text">
+    NavManager.NavigateTo("/signin");
+
+}
+@if (feeds != null)
+{
+    <ul>
         @foreach (var feed in feeds)
         {
-            <li>Date: @feed.Date</li>
-            <li>SchoolCode: @feed.SchoolCode</li>
-            <li>Feedback: @feed.Feedback</li>
+            if (feed != null)
+            {
+            <li class="white-text">Date: @feed.Date</li>
+            <li class="white-text">SchoolCode: @feed.SchoolCode</li>
+            <li class="white-text">Feedback: @feed.Feedback</li>
+            }
         }
     </ul>
 }
 else
 {
     <br />
-    <p>Failed to fetch profile data</p>
+    <p class="white-text">Failed to fetch profile data</p>
 }
 
 @code
