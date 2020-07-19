@@ -19,6 +19,8 @@
           <input type="number" class="form-control mb-4" placeholder="School Code" @bind="schoolcode">
           <p class="black-text">Class</p>
           <input type="text" class="form-control mb-4" placeholder="Class" @bind="sclass">
+          <p class="black-text">Roll Number</p>
+          <input type="number" class="form-control mb-4" placeholder="School Code" @bind="rollNo">
           <p class="black-text">Session</p>
           <input type="number" class="form-control mb-4" placeholder="Session" @bind="session">
           @if (ErrorMessage != null)
@@ -51,6 +53,7 @@
     int session;
     int schoolcode;
     int sclass;
+    int rollNo;
     string ErrorMessage;
     bool success = false;
 
@@ -64,6 +67,11 @@
         if (sclass <= 0 || sclass > 12)
         {
             ErrorMessage = "Class Values between 1-12";
+            return false;
+        }
+        if (rollNo <= 0 )
+        {
+            ErrorMessage = "Roll no must be >=1";
             return false;
         }
         if (schoolcode < 0 || schoolcode >= 100000)
@@ -80,7 +88,7 @@
         {
             ErrorMessage = null;
             success = true;
-            var record = new StudentRecord() { Class = sclass, Session = session, SchoolCode = schoolcode };
+            var record = new StudentRecord() { Class = sclass, Session = session, SchoolCode = schoolcode,RollNumber=rollNo };
             DatabaseHelper.WriteData(Runtime, "Records/" + GlobalUser.UID,record);
         }
         StateHasChanged();
