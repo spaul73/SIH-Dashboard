@@ -144,6 +144,19 @@ function PushData(path, val)
     database.ref(path).push().set(val);
 }
 
+//Returns promise of all children as a single promise. Wasn't able to convert it to List<> in C# so added another method to display through JS 
+async function ReadList(path) {
+    return await database.ref(path).once('value').then(function (snapshot) {
+        var lst = [];
+        snapshot.forEach(function (childSnapshot) {
+            var id = childSnapshot.key;
+            var promise = database.ref(path).child(id).once('value').then(function (snap) { });
+            lst.push(promise);
+        });
+        return Promise.all(lst);
+    });
+}
+
 
 function DisplayFeedback(path)
 {
