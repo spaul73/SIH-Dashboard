@@ -156,5 +156,6 @@ function DisplayFeedback(path)
             document.getElementById("main").appendChild(node);
             document.getElementById("default").style.display = "none";
         });
+        return lst;
     });
 }

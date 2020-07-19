@@ -5,25 +5,39 @@
 <!-- Card Regular -->
 <br />
 <br />
-<div>
-    <ul id="main">
-
+@if (GlobalUser.UID != null && feeds != null)
+{
+    <ul>
+        @foreach (var feed in feeds)
+        {
+            <li>Date: @feed.Date</li>
+            <li>SchoolCode: @feed.SchoolCode</li>
+            <li>Feedback: @feed.Feedback</li>
+        }
     </ul>
-</div>
-<div id="default" style="display:block">
-    <p>Nothing to show</p>
-</div>
+}
+else
+{
+    <br />
+    <p>Failed to fetch profile data</p>
+}
 
 @code
 {
-
+    private List<Feedbacks> feeds = null;
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
         if (firstRender)
         {
-            DatabaseHelper.DisplayFeedback(Runtime, "Feedbacks/" + GlobalUser.UID);
+            LoadFeed();
         }
+    }
+    async void LoadFeed()
+    {
+        feeds = await DatabaseHelper.ReadList<List<Feedbacks>>
+            (Runtime, "Feedbacks/" + GlobalUser.UID);
+        StateHasChanged();
     }
 }
 
