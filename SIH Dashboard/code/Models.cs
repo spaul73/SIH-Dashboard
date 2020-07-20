@@ -38,6 +38,7 @@ namespace SIH_Dashboard
 
     public class Feedbacks
     {
+        public string Id { get; set; }
         public string Date { get; set; }
         public int SchoolCode { get; set; }
         public string Feedback { get; set; }

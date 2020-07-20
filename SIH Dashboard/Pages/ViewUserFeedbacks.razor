@@ -1,4 +1,4 @@
-﻿@page "/feedbacks"
+﻿@page "/user/feedbacks"
 @inject IJSRuntime Runtime
 @inject NavigationManager NavManager
 <NavBar />
@@ -13,17 +13,17 @@
 }
 @if (feeds != null)
 {
-    <ul>
-        @foreach (var feed in feeds)
+    @foreach (var feed in feeds)
+    {
+        @if (feed != null)
         {
-            if (feed != null)
-            {
-            <li class="white-text">Date: @feed.Date</li>
-            <li class="white-text">SchoolCode: @feed.SchoolCode</li>
-            <li class="white-text">Feedback: @feed.Feedback</li>
-            }
+            <ul class="list-group list-group-horizontal-md">
+                <li class="list-group-item">Date: @feed.Date</li>
+                <li class="list-group-item">SchoolCode: @feed.SchoolCode</li>
+                <li class="list-group-item"><a href="/feedback/@feed.Id">View Feedback</a></li>
+            </ul>
         }
-    </ul>
+    }
 }
 else
 {
