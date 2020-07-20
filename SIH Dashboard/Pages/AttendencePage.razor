@@ -2,7 +2,7 @@
 @inject IJSRuntime Runtime
 @inject NavigationManager NavManager
 
-<NavBar/>
+<NavBar />
 
 @if (GlobalUser.UID == null)
 {
@@ -13,16 +13,24 @@ else
 {
     if (data != null)
     {
-        if(data.Role==Roles.Student)
+        if (data.Role == Roles.Student)
         {
-            if(studentData==null)
+            if (studentData == null)
             {
-                <NewStudentRecordDialog/>
+                <NewStudentRecordDialog />
                 //create student record
             }
             else
             {
-                <StudentAttendenceDisplay/>
+                <StudentAttendenceDisplay />
+            }
+        }
+        else if (data.Role == Roles.Teacher)
+        {
+            if (studentData == null)
+            {
+                <NewTeacherRecordDialog/>
+                //create student record
             }
         }
 
@@ -37,6 +45,7 @@ else
 {
     UserData data { get; set; } = null;
     StudentRecord studentData { get; set; } = null;
+    TeacherRecord teacherRecord;
 
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
@@ -55,7 +64,7 @@ else
     async void GetData()
     {
         data = await DatabaseHelper.ReadData<UserData>
-                (Runtime, "Users/" + GlobalUser.UID) ;
+                (Runtime, "Users/" + GlobalUser.UID);
         switch (data.Role)
         {
             case Roles.Admin:
@@ -63,6 +72,7 @@ else
             case Roles.VisitingOfficial:
                 break;
             case Roles.Teacher:
+                GetTeacherData();
                 break;
             case Roles.Student:
                 GetStudentData();
@@ -75,6 +85,12 @@ else
     async void GetStudentData()
     {
         studentData = await DatabaseHelper.ReadData<StudentRecord>
+                (Runtime, "Records/" + GlobalUser.UID);
+        StateHasChanged();
+    }
+    async void GetTeacherData()
+    {
+        teacherRecord = await DatabaseHelper.ReadData<TeacherRecord>
                 (Runtime, "Records/" + GlobalUser.UID);
         StateHasChanged();
     }

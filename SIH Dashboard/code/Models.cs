@@ -50,6 +50,13 @@ namespace SIH_Dashboard
         public int SchoolCode { get; set; }
         public int RollNumber { get; set; }
     }
+    public class TeacherRecord
+    {
+        public int Session { get; set; }
+        public int Class { get; set; }
+        public int SchoolCode { get; set; }
+        public int TeacherId { get; set; }
+    }
     public class StudentAttendence
     {
         public List<SubjectAttendence> SubjectAttendence { get; set; }
