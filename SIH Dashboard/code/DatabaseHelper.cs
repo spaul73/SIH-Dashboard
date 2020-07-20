@@ -38,6 +38,10 @@ namespace SIH_Dashboard
         {
             return await Runtime.InvokeAsync<T>("ReadList", path);
         }
+        public async static Task<T> GetFeedbacks<T>(IJSRuntime Runtime, string path)
+        {
+            return await Runtime.InvokeAsync<T>("GetFeedbacks", path);
+        }
 
     }
 }

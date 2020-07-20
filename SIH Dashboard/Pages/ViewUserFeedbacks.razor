@@ -44,8 +44,7 @@ else
     }
     async void LoadFeed()
     {
-        feeds = await DatabaseHelper.ReadList<List<Feedbacks>>
-            (Runtime, "Feedbacks/" + GlobalUser.UID);
+        feeds = await DatabaseHelper.GetFeedbacks<List<Feedbacks>>(Runtime, "user_feedbacks/" + GlobalUser.UID);
         StateHasChanged();
     }
 }

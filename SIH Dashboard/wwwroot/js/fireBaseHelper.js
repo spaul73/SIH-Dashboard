@@ -157,3 +157,27 @@ async function ReadList(path) {
         return lst;
     });
 }
+
+async function GetIds(path) {
+    return await database.ref(path).once('value').then(function (snapshot) {
+        var ids = [];
+        snapshot.forEach(function (childSnapshot) {
+            var obj = childSnapshot.key;
+            ids.push(obj);
+        });
+        return ids;
+    });
+}
+
+async function GetFeedbacks(path) {
+    var ids = await GetIds(path);
+    var feeds = [];
+    for (const id of ids) {
+        var feed = await database.ref("Feedbacks/" + id).once('value').then(function (snapshot) {
+            var feed = snapshot.val();
+            feed.id = snapshot.key;
+            return feed;});
+        feeds.push(feed);
+    }
+    return feeds;
+}

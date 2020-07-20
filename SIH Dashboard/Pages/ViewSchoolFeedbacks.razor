@@ -1,6 +1,66 @@
 ﻿@page "/school/{SchoolCode}/feedbacks"
-<h3>ViewSchoolFeedbacks</h3>
+@inject IJSRuntime Runtime
+@inject NavigationManager NavManager
+<NavBar />
+<!-- Card Regular -->
+<br />
+<br />
 
-@code {
+@if (GlobalUser.UID == null)
+{
+    NavManager.NavigateTo("/signin");
 
 }
+@if (feeds != null)
+{
+    @foreach (var feed in feeds)
+    {
+        @if (feed != null)
+        {
+            <ul class="list-group list-group-horizontal-md">
+                <li class="list-group-item">Date: @feed.Date</li>
+                <li class="list-group-item">SchoolCode: @feed.SchoolCode</li>
+                <li class="list-group-item"><a href="/feedback/@feed.Id">View Feedback</a></li>
+            </ul>
+        }
+    }
+}
+else
+{
+    <br />
+    <p class="white-text">Failed to fetch profile data</p>
+}
+
+@code
+{
+    [Parameter]
+    public string SchoolCode { get; set; }
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+
+    private List<Feedbacks> feeds = null;
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            LoadFeed();
+        }
+    }
+    async void LoadFeed()
+    {
+        feeds = await DatabaseHelper.GetFeedbacks<List<Feedbacks>>(Runtime, "school_feedbacks/" + SchoolCode);
+        StateHasChanged();
+    }
+}
+
+<style>
+    body {
+        background-image: url('./images/blur.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 100vh;
+        background-position: 0% 0%;
+    }
+</style>
