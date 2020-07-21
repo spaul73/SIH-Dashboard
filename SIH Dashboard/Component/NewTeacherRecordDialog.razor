@@ -1,4 +1,5 @@
 ﻿@inject IJSRuntime Runtime
+@using System.Text.RegularExpressions
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
         Complete your profile
@@ -17,7 +18,7 @@
       <div class="modal-body">
           <p class="black-text">School Code</p>
           <input type="number" class="form-control mb-4" placeholder="School Code" @bind="schoolcode">
-          <p class="black-text">Class Teacher of: </p>
+          <p class="black-text">Teacher of classes: eg :- 4,5,7,8 </p>
           <input type="text" class="form-control mb-4" placeholder="Class" @bind="sclass">
           <p class="black-text">Teacher Id</p>
           <input type="number" class="form-control mb-4" placeholder="School Code" @bind="rollNo">
@@ -52,7 +53,7 @@
 {
     int session;
     int schoolcode;
-    int sclass;
+    string sclass;
     int rollNo;
     string ErrorMessage;
     bool success = false;
@@ -64,7 +65,7 @@
             ErrorMessage = "Session cant be less than 2020";
             return false;
         }
-        if (sclass <= 0 || sclass > 12)
+        if (!Regex.IsMatch(sclass,@"([0-9,]*"))
         {
             ErrorMessage = "Class Values between 1-12";
             return false;
