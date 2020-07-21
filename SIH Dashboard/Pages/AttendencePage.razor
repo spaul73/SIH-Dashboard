@@ -27,10 +27,14 @@ else
         }
         else if (data.Role == Roles.Teacher)
         {
-            if (studentData == null)
+            if (teacherRecord == null)
             {
                 <NewTeacherRecordDialog/>
                 //create student record
+            }
+            else
+            {
+                <TeacherAttendenceView Record="teacherRecord"/>
             }
         }
 

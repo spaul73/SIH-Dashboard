@@ -1,0 +1,14 @@
+﻿<br />
+
+@if(Record!=null)
+{
+
+}
+else
+{
+    <p class="alert-danger white-text">Can't Fetch the record. :(</p>
+}
+@code {
+    [Parameter]
+    public TeacherRecord Record { get; set; }
+}
