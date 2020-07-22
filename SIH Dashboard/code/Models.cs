@@ -53,7 +53,7 @@ namespace SIH_Dashboard
     public class TeacherRecord
     {
         public int Session { get; set; }
-        public string Class { get; set; }
+        public int Class { get; set; }
         public int SchoolCode { get; set; }
         public int TeacherId { get; set; }
     }
