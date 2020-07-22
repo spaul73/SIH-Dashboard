@@ -6,24 +6,41 @@
     if (attendences != null)
     {
         <DualCardHolder>
-            <DualCard TotalColumns="4">
+            <DualCard CardColor="mdb-color darken-3" TotalColumns="4">
+                @if (Record != null)
+                {
+                    <br />
+                <div class="white-text">
+                    <p class="white-text flex-center">Roll Number : @Record.TeacherId </p>
+                    <br />
+                    <p class="white-text flex-center">School Code : @Record.SchoolCode</p>
+                    <br />
+                    <p class="white-text flex-center">Session : @Record.Session</p>
+                    <br />
+                    <p class="white-text flex-center">Class Teacher of  : @(Record.Class)</p>
+                    <button type="button" class="btn btn-primary">Save Changes</button>
 
+                </div>
+                }
             </DualCard>
-            <DualCard TotalColumns="8">
+            <DualCard CardColor="mdb-color darken-3" TotalColumns="8">
                 @foreach(var student in attendences)
                 {
-                    <TableHolder ColumnNames="TableOption">
+                    <br />
+                <TableHolder ColumnNames="TableOption">
+                    @foreach (var sub in student.SubjectAttendence)
+                    {
                         <TableItem>
-                            @foreach (var sub in student.SubjectAttendence)
-                            {
-                                <TableValue>@sub.RollNumber</TableValue>
-                                <TableValue>@sub.SubjectName</TableValue>
-                                <TableValue>@sub.TotalPresent</TableValue>
-                                <TableValue>@sub.TotalClasses</TableValue>
-                                <TableValue><input type="checkbox" class="form-control" /></TableValue>
-                            }
+
+                            <TableValue>@sub.RollNumber</TableValue>
+                            <TableValue>@sub.SubjectName</TableValue>
+                            <TableValue>@sub.TotalPresent</TableValue>
+                            <TableValue>@sub.TotalClasses</TableValue>
+                            <TableValue><input type="checkbox" class="form-control" /></TableValue>
                         </TableItem>
-                    </TableHolder>
+
+                    }
+                </TableHolder>
                 }
             </DualCard>
         </DualCardHolder>
@@ -35,7 +52,7 @@ else
     <p class="alert-danger">Can't Fetch the record. :(</p>
 }
 @code {
-    public string[] TableOption = new string[] { "Roll Number","Subject", "Presents", "Total Presents", "Todays" };
+    public string[] TableOption = new string[] { "Roll Number","Subject", "Presents", "Total Presents", "Todays Attendence" };
     [Parameter]
     public TeacherRecord Record { get; set; }
     List<StudentAttendence> attendences;
