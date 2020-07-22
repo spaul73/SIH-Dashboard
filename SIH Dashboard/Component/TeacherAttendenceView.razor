@@ -1,8 +1,12 @@
-﻿<br />
+﻿@inject IJSRuntime Runtime
+<br />
 
-@if(Record!=null)
+@if (Record != null)
 {
-
+    if (attendences != null)
+    {
+        <p class="alert-danger white-text">@attendences.Count</p>
+    }
 }
 else
 {
@@ -11,4 +15,21 @@ else
 @code {
     [Parameter]
     public TeacherRecord Record { get; set; }
+    List<StudentAttendence> attendences;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            if (Record != null)
+                GetStudentList();
+        }
+    }
+
+    async void GetStudentList()
+    {
+        attendences = await DatabaseHelper.ReadList<List<StudentAttendence>>(Runtime, "Attendence/" + Record.SchoolCode + "/" + Record.Session + "/" + Record.Class);
+        StateHasChanged();
+    }
 }
