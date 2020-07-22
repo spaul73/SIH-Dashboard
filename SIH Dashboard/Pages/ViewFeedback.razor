@@ -1,5 +1,65 @@
 ﻿@page "/feedback/{Id}"
+@inject IJSRuntime Runtime
+<NavBar />
+@if (Feed != null)
+{
+    <div class="container my-5 pt-5 pb-3 px-4 z-depth-1" id="main">
+                @for (int i = 0; i < Scores.Count; i++)
+                {
+                    <div class="d-flex justify-content-between">
+                        <small class="white-text">@Questions[i]</small>
+                        <small class="white-text"><span><strong>@Scores[i]</strong></span>/<span></span>10</small>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: @(Scores[i]*10)%" aria-valuenow="@Scores[i]" aria-valuemin="0" aria-valuemax="10"></div>
+                    </div>
+                    <br>
+                }
+    </div>
+}
+else
+{
+    <p class="white-text">Failed to fetch profile data</p>
+}
 
 @code {
-
+    [Parameter]
+    public string Id { get; set; }
+    public List<string> Questions = null;
+    public List<int> Scores = new List<int>();
+    public Feedbacks Feed = null;
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            LoadVars();
+        }
+    }
+    async void LoadVars()
+    {
+        Questions = await DatabaseHelper.ReadList<List<string>>(Runtime, "Questions/");
+        Feed = await DatabaseHelper.ReadData<Feedbacks>(Runtime, "Feedbacks/" + Id);
+        foreach(char c in Feed.Feedback)
+        {
+            if (c != '0')
+            {
+                Scores.Add((int)(c - '0'));
+            }
+            else
+            {
+                Scores.Add(10);
+            }
+        }
+        StateHasChanged();
+    }
 }
+
+<style>
+    body {
+        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+    }
+    #main {
+        background: #002D62;
+    }
+</style>

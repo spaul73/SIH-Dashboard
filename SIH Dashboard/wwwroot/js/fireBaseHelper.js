@@ -145,13 +145,11 @@ function PushData(path, val)
 }
 
 //Returns list of objects to be used in conjuction with ReadList() wrapper
-//Requires model class to have an Id property
 async function ReadList(path) {
     return await database.ref(path).once('value').then(function (snapshot) {
         var lst = [];
         snapshot.forEach(function (childSnapshot) {
             var obj = childSnapshot.val();
-            obj.id = childSnapshot.key;
             lst.push(obj);
         });
         return lst;
