@@ -5,14 +5,37 @@
 {
     if (attendences != null)
     {
-        <p class="alert-danger white-text">@attendences.Count</p>
+        <DualCardHolder>
+            <DualCard TotalColumns="4">
+
+            </DualCard>
+            <DualCard TotalColumns="8">
+                @foreach(var student in attendences)
+                {
+                    <TableHolder ColumnNames="TableOption">
+                        <TableItem>
+                            @foreach (var sub in student.SubjectAttendence)
+                            {
+                                <TableValue>@sub.RollNumber</TableValue>
+                                <TableValue>@sub.SubjectName</TableValue>
+                                <TableValue>@sub.TotalPresent</TableValue>
+                                <TableValue>@sub.TotalClasses</TableValue>
+                                <TableValue><input type="checkbox" class="form-control" /></TableValue>
+                            }
+                        </TableItem>
+                    </TableHolder>
+                }
+            </DualCard>
+        </DualCardHolder>
+        <p class="alert-dange">@attendences.Count</p>
     }
 }
 else
 {
-    <p class="alert-danger white-text">Can't Fetch the record. :(</p>
+    <p class="alert-danger">Can't Fetch the record. :(</p>
 }
 @code {
+    public string[] TableOption = new string[] { "Roll Number","Subject", "Presents", "Total Presents", "Todays" };
     [Parameter]
     public TeacherRecord Record { get; set; }
     List<StudentAttendence> attendences;

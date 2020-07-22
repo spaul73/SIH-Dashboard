@@ -66,5 +66,6 @@ namespace SIH_Dashboard
         public string SubjectName { get; set; }
         public int TotalClasses { get; set; }
         public int TotalPresent { get; set; }
+        public int RollNumber { get; set; }
     }
 }
