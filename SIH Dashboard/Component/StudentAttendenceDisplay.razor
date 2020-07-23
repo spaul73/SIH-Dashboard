@@ -32,6 +32,9 @@
 </DualCardHolder>
 @code 
 {
+
+    string[] col = new string[] { "Subject", "Present", "Total Classes" };
+
     StudentRecord record;
 
     StudentAttendence attendence;
@@ -43,7 +46,6 @@
             FetchAttendence();
     }
 
-    string[] col = new string[] { "Subject", "Present", "Total Classes" };
 
     async void FetchAttendence()
     {
