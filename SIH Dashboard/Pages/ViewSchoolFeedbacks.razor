@@ -19,7 +19,8 @@
         {
             <ul class="list-group list-group-horizontal-md">
                 <li class="list-group-item">Date: @feed.Date</li>
-                <li class="list-group-item">SchoolCode: @feed.SchoolCode</li>
+                <li class="list-group-item">School: @SchoolCode</li>
+                <li class="list-group-item">Submitted By: @usernames[feed.SchoolCode]</li>
                 <li class="list-group-item"><a href="/feedback/@feed.Id">View Feedback</a></li>
             </ul>
         }
@@ -36,6 +37,9 @@ else
     [Parameter]
     public string SchoolCode { get; set; }
 
+    private string schoolname = null;
+    private IDictionary<int, string> usernames = new Dictionary<int, string>();
+
     private List<Feedbacks> feeds = null;
     protected override void OnAfterRender(bool firstRender)
     {
@@ -48,6 +52,11 @@ else
     async void LoadFeed()
     {
         feeds = await DatabaseHelper.GetFeedbacks<List<Feedbacks>>(Runtime, "school_feedbacks/" + SchoolCode);
+        schoolname = await DatabaseHelper.ReadData<string>(Runtime, "Schools/" + SchoolCode + "/name");
+        foreach (var feed in feeds)
+        {
+            usernames.Add(feed.SchoolCode, await DatabaseHelper.ReadData<string>(Runtime, "Users/" + feed.SubmitterId + "/name"));
+        }
         StateHasChanged();
     }
 }
