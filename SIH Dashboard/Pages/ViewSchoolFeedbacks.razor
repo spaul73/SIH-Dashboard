@@ -35,10 +35,6 @@ else
 {
     [Parameter]
     public string SchoolCode { get; set; }
-    protected override Task OnInitializedAsync()
-    {
-        return base.OnInitializedAsync();
-    }
 
     private List<Feedbacks> feeds = null;
     protected override void OnAfterRender(bool firstRender)

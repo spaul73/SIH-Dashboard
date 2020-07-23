@@ -1,33 +1,47 @@
 ﻿@page "/feedback/{Id}"
 @inject IJSRuntime Runtime
 <NavBar />
-@if (Feed != null)
+@if (feed != null)
 {
-    <div class="container my-5 pt-5 pb-3 px-4 z-depth-1" id="main">
-                @for (int i = 0; i < Scores.Count; i++)
-                {
-                    <div class="d-flex justify-content-between">
-                        <small class="white-text">@Questions[i]</small>
-                        <small class="white-text"><span><strong>@Scores[i]</strong></span>/<span></span>10</small>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: @(Scores[i]*10)%" aria-valuenow="@Scores[i]" aria-valuemin="0" aria-valuemax="10"></div>
-                    </div>
-                    <br>
-                }
+<div class="container my-5 pt-5 pb-3 px-4 z-depth-1" id="main">
+    <div class="d-flex justify-content-between">
+        <small class="white-text">Date: @feed.Date</small>
+        <small class="white-text">School: <a href="school/@feed.SchoolCode">@school.Name</a></small>
+        <small class="white-text">Submitted by: @user.Name</small>
     </div>
+    <br />
+    <br />
+    @for (int i = 0; i < scores.Count; i++)
+    {
+        <div class="d-flex justify-content-between">
+            <small class="white-text">@questions[i]</small>
+            <small class="white-text"><span><strong>@scores[i]</strong></span>/<span></span>10</small>
+        </div>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: @(scores[i]*10)%" aria-valuenow="@scores[i]" aria-valuemin="0" aria-valuemax="10"></div>
+        </div>
+        <br>
+    }
+    <br />
+    @if (feed.Notes != null)
+    {
+        <small class="white-text">Additional Notes: @feed.Notes</small>
+    }
+</div>
 }
 else
 {
-    <p class="white-text">Failed to fetch profile data</p>
+    <p class="white-text">Loading</p>
 }
 
 @code {
     [Parameter]
     public string Id { get; set; }
-    public List<string> Questions = null;
-    public List<int> Scores = new List<int>();
-    public Feedbacks Feed = null;
+    public List<string> questions = null;
+    public List<int> scores = new List<int>();
+    public Feedbacks feed = null;
+    public UserData user = null;
+    public Schools school = null;
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
@@ -38,17 +52,19 @@ else
     }
     async void LoadVars()
     {
-        Questions = await DatabaseHelper.ReadList<List<string>>(Runtime, "Questions/");
-        Feed = await DatabaseHelper.ReadData<Feedbacks>(Runtime, "Feedbacks/" + Id);
-        foreach(char c in Feed.Feedback)
+        questions = await DatabaseHelper.ReadList<List<string>>(Runtime, "Questions/");
+        feed = await DatabaseHelper.ReadData<Feedbacks>(Runtime, "Feedbacks/" + Id);
+        user = await DatabaseHelper.ReadData<UserData>(Runtime, "Users/" + feed.SubmitterId);
+        school = await DatabaseHelper.ReadData<Schools>(Runtime, "Schools/" + feed.SchoolCode);
+        foreach(char c in feed.Feedback)
         {
             if (c != '0')
             {
-                Scores.Add((int)(c - '0'));
+                scores.Add((int)(c - '0'));
             }
             else
             {
-                Scores.Add(10);
+                scores.Add(10);
             }
         }
         StateHasChanged();
