@@ -58,7 +58,7 @@ namespace SIH_Dashboard
         public int Class { get; set; }
         public int SchoolCode { get; set; }
         public int TeacherId { get; set; }
-        public bool UploadedTodays { get; set; }
+        public DateTime UploadedTodays { get; set; }
     }
     public class StudentAttendence
     {
@@ -70,5 +70,6 @@ namespace SIH_Dashboard
         public int TotalClasses { get; set; }
         public int TotalPresent { get; set; }
         public int RollNumber { get; set; }
+        public bool Todays { get; set; }
     }
 }
