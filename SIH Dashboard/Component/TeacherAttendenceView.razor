@@ -20,7 +20,7 @@
                     <p class="white-text flex-center">Class Teacher of  : @(Record.Class)</p>
                     @if (!hasUploadedToday())
                     {
-                        <button type="button" class="btn btn-primary flex-center">Save Changes</button>
+                        <button type="button" class="btn btn-primary flex-center" @onclick="Upload">Save Changes</button>
                     }
                 </div>
                 }
@@ -40,11 +40,13 @@
                         <TableValue>@sub.TotalClasses</TableValue>
                         @if (!hasUploadedToday())
                         {
-                        <TableValue><input type="checkbox" class="form-control" /></TableValue>
+                        <TableValue><input type="checkbox" class="form-control" @bind-value="sub.Todays"/></TableValue>
                         }
                         else
                         {
-                            <p class="white-text flex-center">@(sub.Todays?"P":"A")</p>
+                            <TableValue>
+                                <p class="white-text flex-center">@(sub.Todays?"P":"A")</p>
+                            </TableValue>
                         }
                     </TableItem>
 
@@ -85,7 +87,7 @@ else
     {
         if (Record.UploadedTodays == null)
             return false;
-        else if(Record.UploadedTodays.Date!=DateTime.Now.Date)
+        else if(Record.UploadedTodays.Date.Day!=DateTime.Now.Date.Day)
         {
             return false;
         }
@@ -93,6 +95,21 @@ else
     }
     void Upload()
     {
-
+        if(attendences!=null)
+        {
+            foreach (var item in attendences)
+            {
+                foreach (var sb in item.SubjectAttendence)
+                {
+                    sb.TotalClasses += 1;
+                    if(sb.Todays)
+                        sb.TotalPresent += 1;
+                }
+            }
+            Record.UploadedTodays = DateTime.Now;
+            DatabaseHelper.WriteData(Runtime, "Attendence/" + Record.SchoolCode + "/" + Record.Session + "/" + Record.Class,attendences);
+            DatabaseHelper.WriteData(Runtime, "Records/" + GlobalUser.UID, Record);
+            StateHasChanged();
+        }
     }
 }
