@@ -6,8 +6,8 @@
 <div class="container my-5 pt-5 pb-3 px-4 z-depth-1" id="main">
     <div class="d-flex justify-content-between">
         <small class="white-text">Date: @feed.Date</small>
-        <small class="white-text">School: <a href="school/@feed.SchoolCode">@school.Name</a></small>
-        <small class="white-text">Submitted by: @user.Name</small>
+        <small class="white-text">School: <a href="school/@feed.SchoolCode">@schoolname</a></small>
+        <small class="white-text">Submitted by: @username</small>
     </div>
     <br />
     <br />
@@ -37,11 +37,12 @@ else
 @code {
     [Parameter]
     public string Id { get; set; }
-    public List<string> questions = null;
-    public List<int> scores = new List<int>();
-    public Feedbacks feed = null;
-    public UserData user = null;
-    public Schools school = null;
+
+    private List<string> questions = null;
+    private List<int> scores = new List<int>();
+    private Feedbacks feed = null;
+    private string username = null;
+    private string schoolname = null;
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
@@ -54,8 +55,8 @@ else
     {
         questions = await DatabaseHelper.ReadList<List<string>>(Runtime, "Questions/");
         feed = await DatabaseHelper.ReadData<Feedbacks>(Runtime, "Feedbacks/" + Id);
-        user = await DatabaseHelper.ReadData<UserData>(Runtime, "Users/" + feed.SubmitterId);
-        school = await DatabaseHelper.ReadData<Schools>(Runtime, "Schools/" + feed.SchoolCode);
+        username = await DatabaseHelper.ReadData<string>(Runtime, "Users/" + feed.SubmitterId + "/name");
+        schoolname = await DatabaseHelper.ReadData<string>(Runtime, "Schools/" + feed.SchoolCode + "/name");
         foreach(char c in feed.Feedback)
         {
             if (c != '0')
