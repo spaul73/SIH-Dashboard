@@ -13,29 +13,52 @@
 }
 @if (feeds != null)
 {
-    @foreach (var feed in feeds)
-    {
-        @if (feed != null)
-        {
-            <ul class="list-group list-group-horizontal-md">
-                <li class="list-group-item">Date: @feed.Date</li>
-                <li class="list-group-item">School: @schoolnames[feed.SchoolCode]</li>
-                <li class="list-group-item">Submitted by: @username</li>
-                <li class="list-group-item"><a href="/feedback/@feed.Id">View Feedback</a></li>
-            </ul>
-        }
-    }
+    <DualCardHolder>
+        <DualCard CardColor="mdb-color darken-3" TotalColumns="4">
+            <br />
+            <div class="white-text">
+                <p class="white-text flex-center">Name : @user.Name </p>
+                <br />
+                <p class="white-text flex-center">Email : @user.Email</p>
+                <br />
+                <p class="white-text flex-center">Role : @user.Role.ToString()</p>
+                <br />
+            </div>
+        </DualCard>
+        <DualCard CardColor="mdb-color darken-3" TotalColumns="8">
+            <TableHolder ColumnNames="TableOption">
+                @foreach (var feed in feeds)
+                {
+                    <TableItem>
+                        <TableValue>@feed.Date</TableValue>
+                        <TableValue>@schoolnames[feed.SchoolCode]</TableValue>
+                        <TableValue><a href="/feedback/@feed.Id" style="color:white">View Feedback</a></TableValue>
+                    </TableItem>
+                }
+            </TableHolder>
+        </DualCard>
+    </DualCardHolder>
 }
 else
 {
-    <br />
-    <p class="white-text">Failed to fetch profile data</p>
+    @if (firstrender)
+    {
+        <br />
+        <p class="white-text">Loading</p>
+    }
+    else
+    {
+        <br />
+        <p class="white-text">Failed to fetch profile data</p>
+    }
 }
 
 @code
 {
+    private string[] TableOption = new string[] { "Date", "School", "Feedback" };
+    private bool firstrender = true;
     private List<Feedbacks> feeds = null;
-    private string username = null;
+    private UserData user = null;
     private IDictionary<int, string> schoolnames = new Dictionary<int, string>();
     protected override void OnAfterRender(bool firstRender)
     {
@@ -44,12 +67,16 @@ else
         {
             LoadFeed();
         }
+        else
+        {
+            firstrender = false;
+        }
     }
     async void LoadFeed()
     {
         feeds = await DatabaseHelper.GetFeedbacks<List<Feedbacks>>(Runtime, "user_feedbacks/" + GlobalUser.UID);
-        username = await DatabaseHelper.ReadData<string>(Runtime, "Users/" + GlobalUser.UID + "/name");
-        foreach(var feed in feeds)
+        user = await DatabaseHelper.ReadData<UserData>(Runtime, "Users/" + GlobalUser.UID);
+        foreach (var feed in feeds)
         {
             schoolnames.Add(feed.SchoolCode, await DatabaseHelper.ReadData<string>(Runtime, "Schools/" + feed.SchoolCode + "/name"));
         }
