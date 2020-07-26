@@ -13,31 +13,42 @@
 }
 @if (feeds != null)
 {
-    <DualCardHolder>
-        <DualCard CardColor="mdb-color darken-3" TotalColumns="4">
-            <br />
-            <div class="white-text">
-                <p class="white-text flex-center">Name : @user.Name </p>
-                <br />
-                <p class="white-text flex-center">Email : @user.Email</p>
-                <br />
-                <p class="white-text flex-center">Role : @user.Role.ToString()</p>
-                <br />
-            </div>
-        </DualCard>
-        <DualCard CardColor="mdb-color darken-3" TotalColumns="8">
-            <TableHolder ColumnNames="TableOption">
-                @foreach (var feed in feeds)
-                {
-                    <TableItem>
-                        <TableValue>@feed.Date</TableValue>
-                        <TableValue>@schoolnames[feed.SchoolCode]</TableValue>
-                        <TableValue><a href="/feedback/@feed.Id" style="color:white">View Feedback</a></TableValue>
-                    </TableItem>
-                }
-            </TableHolder>
-        </DualCard>
-    </DualCardHolder>
+    <div class="container">
+        <h5>@user.Name</h5>
+        <h6>@user.Role.ToString()</h6>
+        <address>@user.Email</address>
+            <DataTable Searchable="true">
+                <table class="table table-hover table-bordered table-responsive text-center" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>School Code</th>
+                            <th>School Name</th>
+                            <th>Feedback</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var feed in feeds)
+                        {
+                            <tr>
+                                <td>@feed.Date</td>
+                                <td>@feed.SchoolCode</td>
+                                <td>@schoolnames[feed.SchoolCode]</td>
+                                <td><a href="/feedback/@feed.Id">View Feedback</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Date</th>
+                            <th>School Name</th>
+                            <th>School Code</th>
+                            <th>Feedback</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </DataTable>
+    </div>
 }
 else
 {
@@ -55,7 +66,6 @@ else
 
 @code
 {
-    private string[] TableOption = new string[] { "Date", "School", "Feedback" };
     private bool firstrender = true;
     private List<Feedbacks> feeds = null;
     private UserData user = null;
@@ -83,12 +93,3 @@ else
         StateHasChanged();
     }
 }
-
-<style>
-    body {
-        background-image: url('./images/blur.jpg');
-        background-repeat: no-repeat;
-        background-size: 100% 100vh;
-        background-position: 0% 0%;
-    }
-</style>
