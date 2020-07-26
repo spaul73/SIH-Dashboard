@@ -3,19 +3,19 @@
 <NavBar />
 @if (feed != null)
 {
-<div class="container my-5 pt-5 pb-3 px-4 z-depth-1" id="main">
+<div class="container my-5 pt-5 pb-3 px-4 z-depth-1" id="main" >
     <div class="d-flex justify-content-between">
-        <small class="white-text">Date: @feed.Date</small>
-        <small class="white-text">School: <a href="school/@feed.SchoolCode">@schoolname</a></small>
-        <small class="white-text">Submitted by: @username</small>
+        <small class="black-text">Date: @feed.Date</small>
+        <small class="black-text">School: <a href="school/@feed.SchoolCode">@schoolname</a></small>
+        <small class="black-text">Submitted by: @username</small>
     </div>
     <br />
     <br />
     @for (int i = 0; i < scores.Count; i++)
     {
         <div class="d-flex justify-content-between">
-            <small class="white-text">@questions[i]</small>
-            <small class="white-text"><span><strong>@scores[i]</strong></span>/<span></span>10</small>
+            <small class="black-text">@questions[i]</small>
+            <small class="black-text"><span><strong>@scores[i]</strong></span>/<span></span>10</small>
         </div>
         <div class="progress">
             <div class="progress-bar" role="progressbar" style="width: @(scores[i]*10)%" aria-valuenow="@scores[i]" aria-valuemin="0" aria-valuemax="10"></div>
@@ -25,13 +25,13 @@
     <br />
     @if (feed.Notes != null)
     {
-        <small class="white-text">Additional Notes: @feed.Notes</small>
+        <small class="black-text">Additional Notes: @feed.Notes</small>
     }
 </div>
 }
 else
 {
-    <p class="white-text">Loading</p>
+    <p class="black-text">Loading</p>
 }
 
 @code {
@@ -74,9 +74,13 @@ else
 
 <style>
     body {
-        background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+        
     }
     #main {
-        background: #002D62;
+        background-color: #f5f8fd;
+        border-radius: 20px;
+    }
+    .progress-bar{
+        border-radius: 15px;
     }
 </style>

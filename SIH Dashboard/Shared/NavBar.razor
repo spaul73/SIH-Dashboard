@@ -1,10 +1,10 @@
 ﻿@inject IJSRuntime Runtime
 @inject NavigationManager NavManager
 
-    <nav class="navbar navbar-expand-lg navbar-dark black">
+    <nav class="navbar navbar-expand-lg navbar-primary bg-transparent">
 
         <!-- Navbar brand -->
-        <a class="navbar-brand" href="#">SIH Dashboard</a>
+        <a class="navbar-brand" href="#" id="nbrand">SIH Dashboard</a>
 
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -32,7 +32,7 @@
             </ul>
             @if (GlobalUser.UID == null)
             {
-                <a class="nav-link navbar-right" href="/signin" style="margin-left:-10px">Login</a>
+                <a id="logbtn" class="btn blue-gradient waves-effect navbar-right" href="/signin" style="margin-left:-10px">Log In</a>
             }
             //else if (!GlobalUser.IsVerified && NavManager.Uri.IndexOf("/verifyaccount/") < 0)
             //{
@@ -41,7 +41,7 @@
             else
             {
                 <a class="nav-link navbar-right" href="/userinfo" style="margin-left:-10px">@GlobalUser.Email</a>
-                <button type="button" class="btn blue-gradient waves-effect" @onclick="Logout">Log Out</button>
+                <button id="logbtn" type="button" class="btn blue-gradient waves-effect" @onclick="Logout">Log Out</button>
             }
 
 
@@ -64,10 +64,19 @@
     </nav>
 
 <style>
-    body {
-        background-image: url('./images/blur.jpg');
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-position: 0% 0%;
+
+    #logbtn{
+        border-radius: 30px;
+    }
+    .navbar{
+        box-shadow: none;
+        
+    }
+    .nav-link{
+        font-size: 20px;
+    }
+    .navbar-brand{
+        font-size: 30px;
+        font-weight: bolder;
     }
 </style>
