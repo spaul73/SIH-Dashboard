@@ -81,6 +81,7 @@
             GlobalUser.Email = email;
             GlobalUser.UID = x.uid;
             GlobalUser.IsVerified = x.emailVerified;
+            GlobalUser.Role = await JsRuntime.InvokeAsync<Roles>("ReadData", "Users/" + GlobalUser.UID + "/role");
             StateHasChanged();
             if (x.emailVerified)
             {

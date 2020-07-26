@@ -12,6 +12,7 @@ namespace SIH_Dashboard
         public static string UID { get; set; }
         public static bool IsVerified { get; set; }
         public static string Email { get; set; }
+        public static Roles Role { get; set; }
     }
     public class UserData
     {
