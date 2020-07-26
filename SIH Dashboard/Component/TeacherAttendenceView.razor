@@ -5,57 +5,53 @@
 {
     if (attendences != null)
     {
-        <DualCardHolder>
-            <DualCard CardColor="mdb-color darken-3" TotalColumns="4">
-                @if (Record != null)
-                {
-                    <br />
-                <div class="white-text">
-                    <p class="white-text flex-center">Roll Number : @Record.TeacherId </p>
-                    <br />
-                    <p class="white-text flex-center">School Code : @Record.SchoolCode</p>
-                    <br />
-                    <p class="white-text flex-center">Session : @Record.Session</p>
-                    <br />
-                    <p class="white-text flex-center">Class Teacher of  : @(Record.Class)</p>
-                    @if (!hasUploadedToday())
-                    {
-                        <button type="button" class="btn btn-primary flex-center" @onclick="Upload">Save Changes</button>
-                    }
-                </div>
-                }
-            </DualCard>
-            <DualCard CardColor="mdb-color darken-3" TotalColumns="8">
-                @foreach(var student in attendences)
-                {
-                    <br />
+    <div class="container">
+        @if (Record != null)
+        {
+            <br />
+            <h5>Roll Number: @Record.TeacherId </h5>
+            <br />
+            <h6>School Code : @Record.SchoolCode</h6>
+            <br />
+            <h6>Session : @Record.Session</h6>
+            <br />
+            <h6>Class Teacher of: @(Record.Class)</h6>
+            @if (!hasUploadedToday())
+            {
+                <button type="button" class="btn btn-primary flex-center" @onclick="Upload">Save Changes</button>
+            }
+        }
+        @foreach (var student in attendences)
+        {
+            <br />
+            <DataTable Searchable="true">
                 <TableHolder ColumnNames="TableOption">
                     @foreach (var sub in student.SubjectAttendence)
                     {
-                    <TableItem>
+                        <TableItem>
 
-                        <TableValue>@sub.RollNumber</TableValue>
-                        <TableValue>@sub.SubjectName</TableValue>
-                        <TableValue>@sub.TotalPresent</TableValue>
-                        <TableValue>@sub.TotalClasses</TableValue>
-                        @if (!hasUploadedToday())
-                        {
-                        <TableValue><input type="checkbox" class="form-control" @bind-value="sub.Todays"/></TableValue>
-                        }
-                        else
-                        {
-                            <TableValue>
-                                <p class="white-text flex-center">@(sub.Todays?"P":"A")</p>
-                            </TableValue>
-                        }
-                    </TableItem>
+                            <TableValue>@sub.RollNumber</TableValue>
+                            <TableValue>@sub.SubjectName</TableValue>
+                            <TableValue>@sub.TotalPresent</TableValue>
+                            <TableValue>@sub.TotalClasses</TableValue>
+                            @if (!hasUploadedToday())
+                            {
+                                <TableValue><input type="checkbox" class="form-control" @bind-value="sub.Todays" /></TableValue>
+                            }
+                            else
+                            {
+                                <TableValue>
+                                    <p class="white-text flex-center">@(sub.Todays?"P":"A")</p>
+                                </TableValue>
+                            }
+                        </TableItem>
 
                     }
                 </TableHolder>
-                }
-            </DualCard>
-        </DualCardHolder>
+            </DataTable>
+        }
         <p class="alert-dange">@attendences.Count</p>
+    </div>
     }
 }
 else
@@ -63,7 +59,7 @@ else
     <p class="alert-danger">Can't Fetch the record. :(</p>
 }
 @code {
-    public string[] TableOption = new string[] { "Roll Number","Subject", "Presents", "Total Presents", "Todays Attendence" };
+    public string[] TableOption = new string[] { "Roll Number", "Subject", "Presents", "Total Presents", "Todays Attendence" };
     [Parameter]
     public TeacherRecord Record { get; set; }
     List<StudentAttendence> attendences;
@@ -87,7 +83,7 @@ else
     {
         if (Record.UploadedTodays == null)
             return false;
-        else if(Record.UploadedTodays.Date.Day!=DateTime.Now.Date.Day)
+        else if (Record.UploadedTodays.Date.Day != DateTime.Now.Date.Day)
         {
             return false;
         }
@@ -95,20 +91,20 @@ else
     }
     void Upload()
     {
-        if(attendences!=null)
+        if (attendences != null)
         {
             foreach (var item in attendences)
             {
                 foreach (var sb in item.SubjectAttendence)
                 {
                     sb.TotalClasses += 1;
-                    if(sb.Todays)
+                    if (sb.Todays)
                         sb.TotalPresent += 1;
                     sb.Todays = false;
                 }
             }
             Record.UploadedTodays = DateTime.Now;
-            DatabaseHelper.WriteData(Runtime, "Attendence/" + Record.SchoolCode + "/" + Record.Session + "/" + Record.Class,attendences);
+            DatabaseHelper.WriteData(Runtime, "Attendence/" + Record.SchoolCode + "/" + Record.Session + "/" + Record.Class, attendences);
             DatabaseHelper.WriteData(Runtime, "Records/" + GlobalUser.UID, Record);
             StateHasChanged();
         }

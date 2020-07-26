@@ -1,35 +1,32 @@
 ﻿@inject IJSRuntime Runtime
 <br />
-<DualCardHolder>
-    <DualCard  CardColor="mdb-color darken-3" TotalColumns="4">
-        @if (record != null)
-        {
-        <div class="white-text">
-            <p class="white-text flex-center">Roll Number : @record.RollNumber </p>
-            <br />
-            <p class="white-text flex-center">School Code : @record.SchoolCode</p>
-            <br />
-            <p class="white-text flex-center">Session : @record.Session</p>
-        </div>
-        }
-    </DualCard>
-    <DualCard  CardColor="mdb-color darken-3" TotalColumns="8">
-        @if (attendence != null)
-        {
-            <TableHolder ColumnNames="col" HeaderColor="blue">
-                @foreach(var sub in attendence.SubjectAttendence)
+<div class="container">
+    @if (record != null)
+    {
+        <h5>Roll Number: @record.RollNumber</h5>
+        <br/>
+        <h6>School Code: @record.SchoolCode</h6>
+        <br/>
+        <h6>Session: @record.Session</h6> 
+        <br/>
+    }
+    @if (attendence != null)
+    {
+        <DataTable Searchable="true">
+            <TableHolder ColumnNames="col">
+                @foreach (var sub in attendence.SubjectAttendence)
                 {
-                <TableItem>
-                    <TableValue>@sub.SubjectName</TableValue>
-                    <TableValue>@sub.TotalPresent</TableValue>
-                    <TableValue>@sub.TotalClasses</TableValue>
+                    <TableItem>
+                        <TableValue>@sub.SubjectName</TableValue>
+                        <TableValue>@sub.TotalPresent</TableValue>
+                        <TableValue>@sub.TotalClasses</TableValue>
 
-                </TableItem>
+                    </TableItem>
                 }
             </TableHolder>
-        }
-    </DualCard>
-</DualCardHolder>
+        </DataTable>
+    }
+</div>
 @code 
 {
 
