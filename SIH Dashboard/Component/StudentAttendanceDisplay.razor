@@ -1,0 +1,54 @@
+﻿@inject IJSRuntime Runtime
+<br />
+<div class="container">
+    @if (record != null)
+    {
+        <h5>Roll Number: @record.RollNumber</h5>
+        <br/>
+        <h6>School Code: @record.SchoolCode</h6>
+        <br/>
+        <h6>Session: @record.Session</h6> 
+        <br/>
+    }
+    @if (attendance != null)
+    {
+        <DataTable Searchable="true">
+            <TableHolder ColumnNames="col">
+                @foreach (var sub in attendance.SubjectAttendance)
+                {
+                    <TableItem>
+                        <TableValue>@sub.SubjectName</TableValue>
+                        <TableValue>@sub.TotalPresent</TableValue>
+                        <TableValue>@sub.TotalClasses</TableValue>
+
+                    </TableItem>
+                }
+            </TableHolder>
+        </DataTable>
+    }
+</div>
+@code 
+{
+
+    string[] col = new string[] { "Subject", "Present", "Total Classes" };
+
+    StudentRecord record;
+
+    StudentAttendance attendance;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+            FetchAttendance();
+    }
+
+
+    async void FetchAttendance()
+    {
+        record=await DatabaseHelper.ReadData<StudentRecord>(Runtime, "Records/" + GlobalUser.UID);
+        attendance =await DatabaseHelper.ReadData<StudentAttendance>(Runtime, "Attendance/"+record.SchoolCode+"/"
+    +record.Session+"/"+record.Class+@"/"+record.RollNumber);
+        StateHasChanged();
+    }
+}

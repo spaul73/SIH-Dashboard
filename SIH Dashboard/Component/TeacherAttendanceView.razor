@@ -1,0 +1,112 @@
+﻿@inject IJSRuntime Runtime
+<br />
+
+@if (Record != null)
+{
+    if (attendances != null)
+    {
+    <div class="container">
+        @if (Record != null)
+        {
+            <br />
+            <h5>Roll Number: @Record.TeacherId </h5>
+            <br />
+            <h6>School Code : @Record.SchoolCode</h6>
+            <br />
+            <h6>Session : @Record.Session</h6>
+            <br />
+            <h6>Class Teacher of: @(Record.Class)</h6>
+            @if (!hasUploadedToday())
+            {
+                <button type="button" class="btn btn-primary flex-center" @onclick="Upload">Save Changes</button>
+            }
+        }
+        @foreach (var student in attendances)
+        {
+            <br />
+            <DataTable Searchable="true">
+                <TableHolder ColumnNames="TableOption">
+                    @foreach (var sub in student.SubjectAttendance)
+                    {
+                        <TableItem>
+
+                            <TableValue>@sub.RollNumber</TableValue>
+                            <TableValue>@sub.SubjectName</TableValue>
+                            <TableValue>@sub.TotalPresent</TableValue>
+                            <TableValue>@sub.TotalClasses</TableValue>
+                            @if (!hasUploadedToday())
+                            {
+                                <TableValue><input type="checkbox" class="form-control" @bind-value="sub.Todays" /></TableValue>
+                            }
+                            else
+                            {
+                                <TableValue>
+                                    <p class="white-text flex-center">@(sub.Todays?"P":"A")</p>
+                                </TableValue>
+                            }
+                        </TableItem>
+
+                    }
+                </TableHolder>
+            </DataTable>
+        }
+        <p class="alert-dange">@attendances.Count</p>
+    </div>
+    }
+}
+else
+{
+    <p class="alert-danger">Can't Fetch the record. :(</p>
+}
+@code {
+    public string[] TableOption = new string[] { "Roll Number", "Subject", "Presents", "Total Presents", "Todays Attendance" };
+    [Parameter]
+    public TeacherRecord Record { get; set; }
+    List<StudentAttendance> attendances;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            if (Record != null)
+                GetStudentList();
+        }
+    }
+
+    async void GetStudentList()
+    {
+        attendances = await DatabaseHelper.ReadList<List<StudentAttendance>>(Runtime, "Attendance/" + Record.SchoolCode + "/" + Record.Session + "/" + Record.Class);
+        StateHasChanged();
+    }
+    bool hasUploadedToday()
+    {
+        if (Record.UploadedTodays == null)
+            return false;
+        else if (Record.UploadedTodays.Date.Day != DateTime.Now.Date.Day)
+        {
+            return false;
+        }
+        return true;
+    }
+    void Upload()
+    {
+        if (attendances != null)
+        {
+            foreach (var item in attendances)
+            {
+                foreach (var sb in item.SubjectAttendance)
+                {
+                    sb.TotalClasses += 1;
+                    if (sb.Todays)
+                        sb.TotalPresent += 1;
+                    sb.Todays = false;
+                }
+            }
+            Record.UploadedTodays = DateTime.Now;
+            DatabaseHelper.WriteData(Runtime, "Attendance/" + Record.SchoolCode + "/" + Record.Session + "/" + Record.Class, attendances);
+            DatabaseHelper.WriteData(Runtime, "Records/" + GlobalUser.UID, Record);
+            StateHasChanged();
+        }
+    }
+}

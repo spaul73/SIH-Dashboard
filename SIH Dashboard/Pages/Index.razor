@@ -3,106 +3,62 @@
 
 <NavBar />
 
-<div class="container my-5">
-
-
-    <!--Section: Content-->
-    <section class="white-text text-center">
-
-        <h3 class="heading">Welcome To SIH Dashboard</h3>
-        <br /><br />
-        <!--First row-->
-        <div class="row">
-
-            <!--Grid column-->
-            <div class="col-md-3 mb-4">
-
-                <!-- Card -->
-                <a href="/attendence" class="card hoverable">
-
-                    <!-- Card content -->
-                    <div class="card-body my-4">
-
-                        <p><i class="fas fa-tablet-alt fa-2x text-muted"></i></p>
-                        <h5 class="black-text mb-0">Attendence</h5>
-
-                    </div>
-
-                </a>
-                <!-- Card -->
+<section id="intro" class="clearfix">
+    <div class="container d-flex h-100">
+        <div class="row justify-content-center align-self-center">
+            <div class="col-md-6 intro-info order-md-first order-last">
+                <h2>SIH <br>Dashboard <span>KB185</span></h2>
 
             </div>
-            <!--Grid column-->
-            <!--Grid column-->
-            <div class="col-md-3 mb-4">
+        </div>
 
-                <!-- Card -->
-                <a href="user/feedbacks" class="card hoverable">
+    </div>
+</section>
+<!-- #intro -->
 
-                    <!-- Card content -->
-                    <div class="card-body my-4">
+<main id="main">
 
-                        <p><i class="fas fa-cogs fa-2x text-muted"></i></p>
-                        <h5 class="black-text mb-0">Feedback</h5>
 
+
+
+    <!--==========================
+      Services Section
+    ============================-->
+    <section id="services" class="section-bg">
+        <div class="container">
+
+
+
+            <div class="row">
+
+                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon" style="background: #fceef3;"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
+                        <h4 class="title"><a href="/user/feedbacks">Feedback</a></h4>
+                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
                     </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon" style="background: #fff0da;"><i class="ion-ios-bookmarks-outline" style="color: #e98e06;"></i></div>
+                        <h4 class="title"><a href="/attendance">Attendance</a></h4>
+                        <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+                    </div>
+                </div>
 
-                </a>
-                <!-- Card -->
+                <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
+                        <h4 class="title"><a href="/">Approve</a></h4>
+                        <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+                    </div>
+                </div>
+
+
+
 
             </div>
-            <!--Grid column-->
-            <!--Grid column-->
-            <div class="col-md-3 mb-4">
-
-                <!-- Card -->
-                <a href="#!" class="card hoverable">
-
-                    <!-- Card content -->
-                    <div class="card-body my-4">
-
-                        <p><i class="fas fa-pencil-ruler fa-2x text-muted"></i></p>
-                        <h5 class="black-text mb-0">Govt. Report</h5>
-
-                    </div>
-
-                </a>
-                <!-- Card -->
-
-            </div>
-            <!--Grid column-->
-            <!--Grid column-->
-            <div class="col-md-3 mb-4">
-
-                <!-- Card -->
-                <a href="#!" class="card hoverable">
-
-                    <!-- Card content -->
-                    <div class="card-body my-4">
-
-                        <p><i class="fas fa-recycle fa-2x text-muted"></i></p>
-                        <h5 class="black-text mb-0">Etc</h5>
-
-                    </div>
-
-                </a>
-                <!-- Card -->
-
-            </div>
-            <!--Grid column-->
 
         </div>
-        <!--First row-->
-
-    </section>
-
-
-</div>
-
-<style>
-    body {
-        background: #0f0c29; /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    }
-</style>
+    </section><!-- #services -->
+</main>

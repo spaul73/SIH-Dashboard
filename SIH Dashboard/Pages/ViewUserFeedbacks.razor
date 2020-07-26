@@ -18,35 +18,17 @@
         <h6>@user.Role.ToString()</h6>
         <address>@user.Email</address>
             <DataTable Searchable="true">
-                <table class="table table-hover table-bordered table-responsive text-center" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>School Code</th>
-                            <th>School Name</th>
-                            <th>Feedback</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var feed in feeds)
-                        {
-                            <tr>
-                                <td>@feed.Date</td>
-                                <td>@feed.SchoolCode</td>
-                                <td>@schoolnames[feed.SchoolCode]</td>
-                                <td><a href="/feedback/@feed.Id">View Feedback</a></td>
-                            </tr>
-                        }
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>Date</th>
-                            <th>School Name</th>
-                            <th>School Code</th>
-                            <th>Feedback</th>
-                        </tr>
-                    </tfoot>
-                </table>
+                <TableHolder ColumnNames="TableOption">
+                    @foreach (var feed in feeds)
+                    {
+                        <TableItem>
+                            <TableValue>@feed.Date</TableValue>
+                            <TableValue>@feed.SchoolCode</TableValue>
+                            <TableValue>@schoolnames[feed.SchoolCode]</TableValue>
+                            <TableValue><a href="/feedback/@feed.Id">View Feedback</a></TableValue>
+                        </TableItem>
+                    }
+                </TableHolder>
             </DataTable>
     </div>
 }
@@ -55,18 +37,19 @@ else
     @if (firstrender)
     {
         <br />
-        <p class="white-text">Loading</p>
+        <p>Loading</p>
     }
     else
     {
         <br />
-        <p class="white-text">Failed to fetch profile data</p>
+        <p>Failed to fetch profile data</p>
     }
 }
 
 @code
 {
     private bool firstrender = true;
+    private string[] TableOption = new string[] { "Date", "School Code", "School Name", "Feedback" };
     private List<Feedbacks> feeds = null;
     private UserData user = null;
     private IDictionary<int, string> schoolnames = new Dictionary<int, string>();
