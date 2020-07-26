@@ -104,6 +104,7 @@ else
                     sb.TotalClasses += 1;
                     if(sb.Todays)
                         sb.TotalPresent += 1;
+                    sb.Todays = false;
                 }
             }
             Record.UploadedTodays = DateTime.Now;
