@@ -60,11 +60,11 @@ namespace SIH_Dashboard
         public int TeacherId { get; set; }
         public DateTime UploadedTodays { get; set; }
     }
-    public class StudentAttendence
+    public class StudentAttendance
     {
-        public List<SubjectAttendence> SubjectAttendence { get; set; }
+        public List<SubjectAttendance> SubjectAttendance { get; set; }
     }
-    public class SubjectAttendence
+    public class SubjectAttendance
     {
         public string SubjectName { get; set; }
         public int TotalClasses { get; set; }

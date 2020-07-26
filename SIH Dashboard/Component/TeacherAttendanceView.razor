@@ -3,7 +3,7 @@
 
 @if (Record != null)
 {
-    if (attendences != null)
+    if (attendances != null)
     {
     <div class="container">
         @if (Record != null)
@@ -21,12 +21,12 @@
                 <button type="button" class="btn btn-primary flex-center" @onclick="Upload">Save Changes</button>
             }
         }
-        @foreach (var student in attendences)
+        @foreach (var student in attendances)
         {
             <br />
             <DataTable Searchable="true">
                 <TableHolder ColumnNames="TableOption">
-                    @foreach (var sub in student.SubjectAttendence)
+                    @foreach (var sub in student.SubjectAttendance)
                     {
                         <TableItem>
 
@@ -50,7 +50,7 @@
                 </TableHolder>
             </DataTable>
         }
-        <p class="alert-dange">@attendences.Count</p>
+        <p class="alert-dange">@attendances.Count</p>
     </div>
     }
 }
@@ -59,10 +59,10 @@ else
     <p class="alert-danger">Can't Fetch the record. :(</p>
 }
 @code {
-    public string[] TableOption = new string[] { "Roll Number", "Subject", "Presents", "Total Presents", "Todays Attendence" };
+    public string[] TableOption = new string[] { "Roll Number", "Subject", "Presents", "Total Presents", "Todays Attendance" };
     [Parameter]
     public TeacherRecord Record { get; set; }
-    List<StudentAttendence> attendences;
+    List<StudentAttendance> attendances;
 
     protected override void OnAfterRender(bool firstRender)
     {
@@ -76,7 +76,7 @@ else
 
     async void GetStudentList()
     {
-        attendences = await DatabaseHelper.ReadList<List<StudentAttendence>>(Runtime, "Attendence/" + Record.SchoolCode + "/" + Record.Session + "/" + Record.Class);
+        attendances = await DatabaseHelper.ReadList<List<StudentAttendance>>(Runtime, "Attendance/" + Record.SchoolCode + "/" + Record.Session + "/" + Record.Class);
         StateHasChanged();
     }
     bool hasUploadedToday()
@@ -91,11 +91,11 @@ else
     }
     void Upload()
     {
-        if (attendences != null)
+        if (attendances != null)
         {
-            foreach (var item in attendences)
+            foreach (var item in attendances)
             {
-                foreach (var sb in item.SubjectAttendence)
+                foreach (var sb in item.SubjectAttendance)
                 {
                     sb.TotalClasses += 1;
                     if (sb.Todays)
@@ -104,7 +104,7 @@ else
                 }
             }
             Record.UploadedTodays = DateTime.Now;
-            DatabaseHelper.WriteData(Runtime, "Attendence/" + Record.SchoolCode + "/" + Record.Session + "/" + Record.Class, attendences);
+            DatabaseHelper.WriteData(Runtime, "Attendance/" + Record.SchoolCode + "/" + Record.Session + "/" + Record.Class, attendances);
             DatabaseHelper.WriteData(Runtime, "Records/" + GlobalUser.UID, Record);
             StateHasChanged();
         }

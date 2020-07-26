@@ -10,11 +10,11 @@
         <h6>Session: @record.Session</h6> 
         <br/>
     }
-    @if (attendence != null)
+    @if (attendance != null)
     {
         <DataTable Searchable="true">
             <TableHolder ColumnNames="col">
-                @foreach (var sub in attendence.SubjectAttendence)
+                @foreach (var sub in attendance.SubjectAttendance)
                 {
                     <TableItem>
                         <TableValue>@sub.SubjectName</TableValue>
@@ -34,20 +34,20 @@
 
     StudentRecord record;
 
-    StudentAttendence attendence;
+    StudentAttendance attendance;
 
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
         if (firstRender)
-            FetchAttendence();
+            FetchAttendance();
     }
 
 
-    async void FetchAttendence()
+    async void FetchAttendance()
     {
         record=await DatabaseHelper.ReadData<StudentRecord>(Runtime, "Records/" + GlobalUser.UID);
-        attendence =await DatabaseHelper.ReadData<StudentAttendence>(Runtime, "Attendence/"+record.SchoolCode+"/"
+        attendance =await DatabaseHelper.ReadData<StudentAttendance>(Runtime, "Attendance/"+record.SchoolCode+"/"
     +record.Session+"/"+record.Class+@"/"+record.RollNumber);
         StateHasChanged();
     }

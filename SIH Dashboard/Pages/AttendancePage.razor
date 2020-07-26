@@ -1,4 +1,4 @@
-﻿@page "/attendence"
+﻿@page "/attendance"
 @inject IJSRuntime Runtime
 @inject NavigationManager NavManager
 
@@ -22,7 +22,7 @@ else
             }
             else
             {
-                <StudentAttendenceDisplay />
+                <StudentAttendanceDisplay />
             }
         }
         else if (data.Role == Roles.Teacher)
@@ -34,7 +34,7 @@ else
             }
             else
             {
-                <TeacherAttendenceView Record="teacherRecord"/>
+                <TeacherAttendanceView Record="teacherRecord"/>
             }
         }
 
