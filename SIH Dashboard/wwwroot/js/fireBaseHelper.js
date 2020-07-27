@@ -150,6 +150,7 @@ async function ReadList(path) {
         var lst = [];
         snapshot.forEach(function (childSnapshot) {
             var obj = childSnapshot.val();
+            obj.id = childSnapshot.key;
             lst.push(obj);
         });
         return lst;
