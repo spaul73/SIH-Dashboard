@@ -1,0 +1,55 @@
+﻿@page "/schools/{SchoolCode}/overview/"
+@inject IJSRuntime Runtime
+@inject NavigationManager NavManager
+
+<NavBar />
+
+@if (feeds != null)
+{
+    <div class="container">
+        <h5>Testing</h5>
+        @foreach(var feed in feeds)
+        {
+            <p>@feed.Notes</p>
+            <p>@feed.SchoolCode</p>
+        }
+    </div>
+}
+else
+{
+    @if (firstrender)
+    {
+        <br />
+        <p>Loading</p>
+    }
+    else
+    {
+        <br />
+        <p>Failed to fetch profile data</p>
+    }
+}
+
+@code
+{
+    [Parameter]
+    public string SchoolCode { get; set; }
+    List<Feedbacks> feeds = null;
+    bool firstrender = true;
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            LoadFeed();
+        }
+        else
+        {
+            firstrender = false;
+        }
+    }
+    async void LoadFeed()
+    {
+        feeds = await DatabaseHelper.GetFeedbacks<List<Feedbacks>>(Runtime, "school_feedbacks/" + SchoolCode, 5);
+        StateHasChanged();
+    }
+}

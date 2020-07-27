@@ -157,8 +157,12 @@ async function ReadList(path) {
     });
 }
 
-async function GetIds(path) {
-    return await database.ref(path).once('value').then(function (snapshot) {
+async function GetIds(path, lmt) {
+    var dbref = database.ref(path);
+    if (lmt != 0) {
+        var dbref = dbref.limitToLast(lmt);
+    }
+    return await dbref.once('value').then(function (snapshot) {
         var ids = [];
         snapshot.forEach(function (childSnapshot) {
             var obj = childSnapshot.key;
@@ -168,8 +172,8 @@ async function GetIds(path) {
     });
 }
 
-async function GetFeedbacks(path) {
-    var ids = await GetIds(path);
+async function GetFeedbacks(path, lmt) {
+    var ids = await GetIds(path, lmt);
     var feeds = [];
     for (const id of ids) {
         var feed = await database.ref("Feedbacks/" + id).once('value').then(function (snapshot) {
