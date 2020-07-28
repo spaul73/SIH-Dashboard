@@ -64,8 +64,8 @@ else
 
 @code
 {
-        [Parameter]
-        public string SchoolCode { get; set; }
+    [Parameter]
+    public string SchoolCode { get; set; }
     private List<Feedbacks> feeds = null;
     private bool chartnotmade = true;
     private string[] dates = { "NA", "NA", "NA", "NA", "NA" };
@@ -96,12 +96,15 @@ else
             dates[i] = feed.Date;
             for (int j = 0; j < 10; j++)
             {
+                int ch = (int)(feed.Feedback[j] - '0');
+                if (ch == 0)
+                    ch = 10;
                 if (j < 4)
-                    category1[i] += (int)(feed.Feedback[j] - '0');
+                    category1[i] += ch;
                 else if (j < 7)
-                    category2[i] += (int)(feed.Feedback[j] - '0');
+                    category2[i] += ch;
                 else
-                    category3[i] += (int)(feed.Feedback[j] - '0');
+                    category3[i] += ch;
             }
         }
         StateHasChanged();
