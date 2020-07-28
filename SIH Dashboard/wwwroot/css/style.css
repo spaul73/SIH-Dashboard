@@ -1568,3 +1568,49 @@ h6 {
     margin-bottom: 25px;
   }
 }
+/* -------------------------------------------------------------- */
+
+/* signin page */
+#logcontainer{
+  background-image: url("../img/bg11.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 30px;
+  backdrop-filter: 5px;
+  background-attachment: fixed;
+}
+
+#signincard{
+ border-radius: 30px;
+ background-image: url("../img/bg11.jpg");
+}
+.btn{
+ border-radius: 20px;
+}
+#signinjumbo{
+ background-image: url("../avtar/avtar2.svg");
+ background-repeat: no-repeat;
+ background-position: center;
+ border-radius: 50%;
+ height: 100%;
+ width: 100%;
+}
+/* -------------------------------------------------------- */
+/* userinfo page */
+#userinfojumbo{
+  background-image: url("../avtar/avtar3.svg");
+background-repeat: no-repeat;
+padding: 9rem 10rem;
+background-position: center;
+border-radius: 50%;
+height: 100%;
+width: 100%;
+background-color: #f5f8fd;
+box-shadow: none;
+}
+#userinfocard{
+background-color: #f5f8fd;
+border-radius: 30px;
+}
+/* ------------------------------------------- */

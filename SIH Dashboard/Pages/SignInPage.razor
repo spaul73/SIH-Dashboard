@@ -4,16 +4,22 @@
 
 <NavBar/>
 
-<div class="container my-5 px-0">
+ 
+
+<div class="container my-5 px-0" >
 
     <!--Section: Content-->
-    <section class="p-5 my-md-5 text-center">
+    <section class="p-5 my-md-5 text-center"  id="logcontainer">
         <!--form action="" class="my-5 mx-md-5"-->
 
             <div class="row">
+                 <div class="col-md-6 mx-auto">
+                    <div class="jumbotron" id="signinjumbo"></div>
+                </div>
+                
                 <div class="col-md-6 mx-auto">
                     <!-- Material form login -->
-                    <div class="card">
+                    <div class="card" id="signincard">
 
                         <!--Card content-->
                         <div class="card-body">
@@ -36,7 +42,7 @@
                                 <!-- Email -->
                                 <input type="password" id="defaultSubscriptionFormEmail" class="form-control" placeholder="Password" @bind-value="password">
                                 <small id="passwordHelpBlock" class="form-text text-right blue-text">
-                                    <p style="color:dodgerblue;font-weight:bold;cursor:pointer" @onclick="ResetPassword">Recover Password</p>
+                                    <p style="padding-top: 22px; color:black;font-weight:bold;cursor:pointer;font-size:115%;" @onclick="ResetPassword">Recover Password</p>
                                 </small>
 
                                 <div class="text-center">
@@ -59,9 +65,9 @@
 
     </section>
     <!--Section: Content-->
-
-
 </div>
+
+
 
 @code
 {

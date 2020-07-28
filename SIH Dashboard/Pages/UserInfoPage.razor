@@ -5,20 +5,23 @@
     <!-- Card Regular -->
 <br />
 <br />
+<style>
+
+
+</style>
 
 @if (!string.IsNullOrWhiteSpace(GlobalUser.UID) && data!=null)
 {
+
 <div class="d-flex justify-content-center align-items-center">
 
     <!-- Content -->
     <!--Card-->
-    <div class="card testimonial-card" style="max-width:500px;">
+    <div class="card testimonial-card" style="max-width:500px;" id="userinfocard">
         <!--Background color-->
         <div class="card-up info-color"></div>
         <!--Avatar-->
-        <div class="avatar mx-auto white">
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg" class="rounded-circle img-fluid">
-        </div>
+        <div class="jumbotron" id="userinfojumbo"></div>
         <div class="card-body">
             <!--Name-->
             <h4 class="font-weight-bold mb-4">@data.Name</h4>
@@ -32,12 +35,13 @@
             </p>
             <br />
             <p>Terms and Conditions, Eula , Copyrights Information</p>
-            <button type="submit" @onclick="Logout" class="btn btn-info my-4 btn-block blue-gradient  waves-effect">Log Out</button>
+            <button type="submit" @onclick="Logout" class="btn btn-info my-4 btn-block blue-gradient  waves-effect" style="border-radius: 30px;">Log Out</button>
         </div>
     </div>
     <!--Card-->
 
 </div>
+
 }
 else
 {
