@@ -16,7 +16,10 @@
     <div class="container">
         <h5>@school.Name</h5>
         <h6>@SchoolCode</h6>
-        <address>@school.Address</address>
+        <div class="row justify-content-between">
+            <div class="col"><address>@school.Address</address></div>
+            <div class="col text-right"><strong><a href="schools/@SchoolCode/overview">Overview</a></strong></div>
+        </div>
         <DataTable Searchable="true">
             <TableHolder ColumnNames="TableOption">
                 @foreach (var feed in feeds)
