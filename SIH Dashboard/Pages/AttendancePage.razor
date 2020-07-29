@@ -29,12 +29,24 @@ else
         {
             if (teacherRecord == null)
             {
-                <NewTeacherRecordDialog/>
+                <NewTeacherRecordDialog />
                 //create student record
             }
             else
             {
-                <TeacherAttendanceView Record="teacherRecord"/>
+                <TeacherAttendanceView Record="teacherRecord" />
+            }
+        }
+        else if (data.Role == Roles.Parent)
+        {
+            if (parentRecord == null)
+            {
+                <NewParentRecord />
+                //create student record
+            }
+            else
+            {
+                <ParentAttendenceView/>
             }
         }
 
@@ -49,6 +61,7 @@ else
 {
     UserData data { get; set; } = null;
     StudentRecord studentData { get; set; } = null;
+    StudentRecord parentRecord { get; set; } = null;
     TeacherRecord teacherRecord;
 
     protected override Task OnAfterRenderAsync(bool firstRender)
@@ -81,6 +94,9 @@ else
             case Roles.Student:
                 GetStudentData();
                 break;
+            case Roles.Parent:
+                GetParentData();
+                break;
             default:
                 break;
         }
@@ -90,6 +106,12 @@ else
     {
         studentData = await DatabaseHelper.ReadData<StudentRecord>
                 (Runtime, "Records/" + GlobalUser.UID);
+        StateHasChanged();
+    }
+    async void GetParentData()
+    {
+        parentRecord = await DatabaseHelper.ReadData<StudentRecord>
+                (Runtime, "ParentRecords/" + GlobalUser.UID);
         StateHasChanged();
     }
     async void GetTeacherData()

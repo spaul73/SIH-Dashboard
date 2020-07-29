@@ -74,10 +74,10 @@
 
     async void FetchAttendance()
     {
-        record=await DatabaseHelper.ReadData<StudentRecord>(Runtime, "Records/" + GlobalUser.UID);
-        var attend = await DatabaseHelper.ReadData<List<StudentAttendance>>(Runtime, "Attendance/" + record.SchoolCode + "/"
-    + record.Session + "/" + record.Class);
-        attendance = attend.Find(x => x.SubjectAttendance[0].RollNumber == record.RollNumber);
+        record=await DatabaseHelper.ReadData<StudentRecord>(Runtime, "ParentRecords/" + GlobalUser.UID);
+        var attend =await DatabaseHelper.ReadData<List<StudentAttendance>>(Runtime, "Attendance/"+record.SchoolCode+"/"
+    +record.Session+"/"+record.Class);
+        attendance=attend.Find(x => x.SubjectAttendance[0].RollNumber == record.RollNumber);
         foreach(var sub in attendance.SubjectAttendance)
         {
             totpresent += sub.TotalPresent;
