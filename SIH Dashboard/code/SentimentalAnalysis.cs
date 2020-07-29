@@ -1,11 +1,11 @@
-﻿using Azure.AI.TextAnalytics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static SIH_Dashboard.SentimentalAnalysis.AzureSentiment;
 
 namespace SIH_Dashboard
 {
@@ -38,9 +38,9 @@ namespace SIH_Dashboard
                 "https://toxiccommentfunc.azurewebsites.net/api/ToxicityServe?code=1Lh8wJ8CE9KFVlKCTRjuj5WnrvsSFcLx0T2UamtKEhLDjVWXOrEJag=="
             }
         };
-        readonly string azureURL = "https://toxiccommentfunc.azurewebsites.net/api/SentimentAnalysis?code=1x7UkwYmWhAuGcHZFFWUg48wDqd0Rnn3cLUCyytmPqOL/eZS2OVcBw==";
+        readonly static string azureURL = "https://toxiccommentfunc.azurewebsites.net/api/SentimentAnalysis?code=1x7UkwYmWhAuGcHZFFWUg48wDqd0Rnn3cLUCyytmPqOL/eZS2OVcBw==";
 
-        public async Task<DocumentSentiment> GetAzureSentiment(string comment)
+        public static async Task<DocumentSentiment> GetAzureSentiment(string comment)
         {
             SentimentInput input = new SentimentInput() { commentText = comment };
             var res = await Client.PostAsync(azureURL, JsonContent.Create(input));
@@ -49,7 +49,7 @@ namespace SIH_Dashboard
             var model = JsonSerializer.Deserialize<DocumentSentiment>(response);
             return model;
         }
-        public async static Task<ModelOutput> GetSentiment(string comment,SentimentType type)
+        public async static Task<ModelOutput> GetSentiment(string comment, SentimentType type)
         {
             SentimentInput input = new SentimentInput() { commentText = comment };
             var res = await Client.PostAsync(UrlMap[type], JsonContent.Create(input));
@@ -78,6 +78,79 @@ namespace SIH_Dashboard
             // its default value, which is the name of the field.
             public Single Prediction { get; set; }
             public float[] Score { get; set; }
+        }
+
+        public class AzureSentiment
+        {
+            public class DocumentSentiment
+            {
+                //
+                // Summary:
+                //     Gets the predicted sentiment for the analyzed document.
+                public TextSentiment Sentiment { get; set; }
+                //
+                // Summary:
+                //     Gets the sentiment confidence score (Softmax score) between 0 and 1, for each
+                //     sentiment. Higher values signify higher confidence.
+                public SentimentConfidenceScores ConfidenceScores { get; set; }
+                //
+                // Summary:
+                //     Gets the predicted sentiment for each sentence in the corresponding document.
+                public List<SentenceSentiment> Sentences { get; set; }
+            }
+            public class SentimentConfidenceScores
+            {
+                //
+                // Summary:
+                //     Gets a score between 0 and 1, indicating the confidence that the sentiment of
+                //     the analyzed text is positive.
+                public double Positive { get; set; }
+                //
+                // Summary:
+                //     Gets a score between 0 and 1, indicating the confidence that the sentiment of
+                //     the analyzed text is neutral.
+                public double Neutral { get; set; }
+                //
+                // Summary:
+                //     Gets a score between 0 and 1, indicating the confidence that the sentiment of
+                //     the analyzed text is negative.
+                public double Negative { get; set; }
+            }
+            public class SentenceSentiment
+            {
+                //
+                // Summary:
+                //     Gets the predicted sentiment for the analyzed sentence.
+                public TextSentiment Sentiment { get; set; }
+                //
+                // Summary:
+                //     Gets the sentence text.
+                public string Text { get; set; }
+                //
+                // Summary:
+                //     Gets the sentiment confidence score (Softmax score) between 0 and 1, for each
+                //     sentiment. Higher values signify higher confidence.
+                public SentimentConfidenceScores ConfidenceScores { get; set; }
+            }
+            public enum TextSentiment
+            {
+                //
+                // Summary:
+                //     Indicates that the sentiment is positive.
+                Positive = 0,
+                //
+                // Summary:
+                //     Indicates that the sentiment is neutral.
+                Neutral = 1,
+                //
+                // Summary:
+                //     Indicates that the sentiment is negative.
+                Negative = 2,
+                //
+                // Summary:
+                //     Indicates that the document contains mixed sentiments.
+                Mixed = 3
+            }
         }
     }
 }
