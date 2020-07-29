@@ -3,7 +3,7 @@
 <NavBar />
 @if (feed != null)
 {
-<div class="container my-5 pt-5 pb-3 px-4 z-depth-1" id="main" >
+<div class="container my-5 pt-5 pb-3 px-4 z-depth-1" id="main">
     <div class="d-flex justify-content-between">
         <small class="black-text">Date: @feed.Date</small>
         <small class="black-text">School: <a href="school/@feed.SchoolCode">@schoolname</a></small>
@@ -26,6 +26,8 @@
     @if (feed.Notes != null)
     {
         <small class="black-text">Additional Notes: @feed.Notes</small>
+        <br/>
+        <small class="black-text">Insulting: @(senti.Prediction==0?"No":"Yes")</small>
     }
 </div>
 }
@@ -43,6 +45,7 @@ else
     private Feedbacks feed = null;
     private string username = null;
     private string schoolname = null;
+    private SentimentalAnalysis.ModelOutput senti = null;
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
@@ -57,7 +60,8 @@ else
         feed = await DatabaseHelper.ReadData<Feedbacks>(Runtime, "Feedbacks/" + Id);
         username = await DatabaseHelper.ReadData<string>(Runtime, "Users/" + feed.SubmitterId + "/name");
         schoolname = await DatabaseHelper.ReadData<string>(Runtime, "Schools/" + feed.SchoolCode + "/name");
-        foreach(char c in feed.Feedback)
+        senti = await SentimentalAnalysis.GetSentiment(feed.Notes, SentimentalAnalysis.SentimentType.Insult);
+        foreach (char c in feed.Feedback)
         {
             if (c != '0')
             {
