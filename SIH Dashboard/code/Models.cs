@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SIH_Dashboard
 {
@@ -27,7 +24,7 @@ namespace SIH_Dashboard
 
     public enum Roles
     {
-        Admin,VisitingOfficial,Teacher,Student,Parent
+        Admin, VisitingOfficial, Teacher, Student, Parent
     }
 
     public class Schools
@@ -73,4 +70,19 @@ namespace SIH_Dashboard
         public int RollNumber { get; set; }
         public bool Todays { get; set; }
     }
+
+    public class QuizQuestion
+    {
+        public string id { get; set; }
+        public string date { get; set; }
+        public int schoolCode { get; set; }
+        public string submitterId { get; set; }
+        public string notes { get; set; }
+        public string question { get; set; }
+        public QuestionType type { get; set; }
+        public string assigneeId { get; set; }
+        public List<string> options { get; set; }
+    }
+    public enum QuestionType { LONG, MCQ }
+
 }
