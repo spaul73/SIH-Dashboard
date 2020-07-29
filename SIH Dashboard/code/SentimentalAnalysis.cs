@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Azure.AI.TextAnalytics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -37,6 +38,17 @@ namespace SIH_Dashboard
                 "https://toxiccommentfunc.azurewebsites.net/api/ToxicityServe?code=1Lh8wJ8CE9KFVlKCTRjuj5WnrvsSFcLx0T2UamtKEhLDjVWXOrEJag=="
             }
         };
+        readonly string azureURL = "https://toxiccommentfunc.azurewebsites.net/api/SentimentAnalysis?code=1x7UkwYmWhAuGcHZFFWUg48wDqd0Rnn3cLUCyytmPqOL/eZS2OVcBw==";
+
+        public async Task<DocumentSentiment> GetAzureSentiment(string comment)
+        {
+            SentimentInput input = new SentimentInput() { commentText = comment };
+            var res = await Client.PostAsync(azureURL, JsonContent.Create(input));
+
+            var response = await res.Content.ReadAsStringAsync();
+            var model = JsonSerializer.Deserialize<DocumentSentiment>(response);
+            return model;
+        }
         public async static Task<ModelOutput> GetSentiment(string comment,SentimentType type)
         {
             SentimentInput input = new SentimentInput() { commentText = comment };
