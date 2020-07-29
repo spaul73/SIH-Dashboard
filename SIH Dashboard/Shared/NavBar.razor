@@ -2,7 +2,7 @@
 @inject NavigationManager NavManager
 
 
-    <nav class="navbar navbar-expand-lg navbar-primary bg-transparent">
+    <nav class="navbar navbar-expand-lg navbar-primary bg-blue">
 
 
         <!-- Navbar brand -->
@@ -18,23 +18,23 @@
         <div class="collapse navbar-collapse black-text" id="basicExampleNav">
 
             <!-- Links -->
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav  ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="#" id="navopt">
                         Home
                         <!--span class="sr-only">(current)</!--span-->
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="#" style="margin: 0 2rem;"id="navopt">Features</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="#"  id="navopt">Pricing</a>
                 </li>
             </ul>
             @if (GlobalUser.UID == null)
             {
-                <a id="logbtn" class="btn blue-gradient waves-effect navbar-right" href="/signin" style="margin-left:-10px">Log In</a>
+                <a id="logbtn" class="btn blue-gradient waves-effect navbar-right" href="/signin" >Log In</a>
             }
             //else if (!GlobalUser.IsVerified && NavManager.Uri.IndexOf("/verifyaccount/") < 0)
             //{
@@ -42,7 +42,7 @@
             //}
             else
             {
-                <a class="nav-link navbar-right" href="/userinfo" style="margin-left:-10px">@GlobalUser.Email</a>
+                <a class="nav-link navbar-right" href="/userinfo" >@GlobalUser.Email</a>
                 <button id="logbtn" type="button" class="btn blue-gradient waves-effect" @onclick="Logout">Log Out</button>
             }
 
@@ -69,6 +69,9 @@
 
     #logbtn{
         border-radius: 30px;
+        box-shadow: none;
+        font-size: 1.5rem;
+
     }
     .navbar{
         box-shadow: none;
@@ -80,6 +83,12 @@
     .navbar-brand{
         font-size: 30px;
         font-weight: bolder;
+    }
+    #navopt{
+    
+	color: #413e66;
+	font-size: 24px;
+
     }
 </style>
 

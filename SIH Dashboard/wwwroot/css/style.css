@@ -214,8 +214,11 @@ h6 {
   width: 100%;
   height: 50vh;
   position: relative;
-  background: #f5f8fd url("../img/intro-bg.jpg") center top no-repeat;
+  background: url('../img/bg11.jpg');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
 
 #intro .intro-info h2 {
@@ -581,6 +584,7 @@ h6 {
 
 #services {
   padding: 60px 0 40px 0;
+  background: transparent;
 }
 
 #services .box {
@@ -1571,6 +1575,12 @@ h6 {
 /* -------------------------------------------------------------- */
 
 /* signin page */
+#coljumbo{
+  width: 15%;
+  position: absolute;
+  margin-left: 29%;
+  margin-top: -20px;
+}
 #logcontainer{
   background-image: url("../img/bg11.jpg");
   background-position: center;
@@ -1584,6 +1594,7 @@ h6 {
 #signincard{
  border-radius: 30px;
  background-image: url("../img/bg11.jpg");
+background-position: left;
 }
 .btn{
  border-radius: 20px;
@@ -1594,7 +1605,69 @@ h6 {
  background-position: center;
  border-radius: 50%;
  height: 100%;
- width: 100%;
+ width: 9rem;
+ margin-top: -4rem;
+ position: absolute;
+ z-index: 1;
+ margin-left: 28rem;
+
+ /* ----- */
+
+
+  
+ /* ----- */
+
+}
+
+@media only screen and (max-width: 768px)
+{
+  #signinjumbo{
+    background-image: url("../avtar/avtar2.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    height: 54%;
+    width: 9rem;
+    margin-top: -4rem;
+    margin-left: 15rem;
+   }
+   #signincard{
+    border-radius: 30px;
+    background-image: url("../img/bg11.jpg");
+    background-position: left;
+  }
+
+}
+
+@media only screen and (max-width: 420px)
+{
+  #signinjumbo{
+    background-image: url("../avtar/avtar2.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+   
+    width: 4rem;
+    margin-left: 7rem;
+    margin-top: 0rem;
+  }
+   #signincard{
+    border-radius: 30px;
+    background-image: url("../img/bg11.jpg");
+
+  }
+  #logcontainer{
+    background-image: url("../img/bg11.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 30px;
+    backdrop-filter: 5px;
+    background-attachment: fixed;
+  }
+  .btn{
+    border-radius: 20px;
+   }
 }
 /* -------------------------------------------------------- */
 /* userinfo page */
@@ -1606,11 +1679,24 @@ background-position: center;
 border-radius: 50%;
 height: 100%;
 width: 100%;
-background-color: #f5f8fd;
+background-color: transparent;
 box-shadow: none;
 }
 #userinfocard{
+ 
 background-color: #f5f8fd;
 border-radius: 30px;
 }
 /* ------------------------------------------- */
+
+/* ---------------------- */
+#indexh2{
+
+    background: white;
+    border-radius: 30px;
+    padding: 10%;
+    margin-left: -13rem;
+  
+  }
+
+/* ---------------------------- */
