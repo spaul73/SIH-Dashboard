@@ -27,7 +27,7 @@
     {
         <small class="black-text">Additional Notes: @feed.Notes</small>
         <br/>
-        <small class="black-text">Insulting: @(senti.Prediction==0?"No":"Yes")</small>
+        <small class="black-text">Sentiment Score: @senti</small>
     }
 </div>
 }
@@ -45,7 +45,7 @@ else
     private Feedbacks feed = null;
     private string username = null;
     private string schoolname = null;
-    private SentimentalAnalysis.ModelOutput senti = null;
+    private string senti = null;
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
@@ -58,9 +58,10 @@ else
     {
         questions = await DatabaseHelper.ReadList<List<string>>(Runtime, "Questions/");
         feed = await DatabaseHelper.ReadData<Feedbacks>(Runtime, "Feedbacks/" + Id);
+        feed.Id = Id;
         username = await DatabaseHelper.ReadData<string>(Runtime, "Users/" + feed.SubmitterId + "/name");
         schoolname = await DatabaseHelper.ReadData<string>(Runtime, "Schools/" + feed.SchoolCode + "/name");
-        senti = await SentimentalAnalysis.GetSentiment(feed.Notes, SentimentalAnalysis.SentimentType.Insult);
+        senti = await SentimentalAnalysis.GetFeedbackSentiment(Runtime, feed);
         foreach (char c in feed.Feedback)
         {
             if (c != '0')

@@ -42,6 +42,7 @@ namespace SIH_Dashboard
         public string SubmitterId { get; set; }
         public string Notes { get; set; }
         public string Feedback { get; set; }
+        public string SentimentScore { get; set; }
     }
     public class StudentRecord
     {

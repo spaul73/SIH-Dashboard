@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Threading.Tasks;
 using static SIH_Dashboard.SentimentalAnalysis.AzureSentiment;
+using Microsoft.JSInterop;
 
 namespace SIH_Dashboard
 {
@@ -151,6 +153,19 @@ namespace SIH_Dashboard
                 //     Indicates that the document contains mixed sentiments.
                 Mixed = 3
             }
+        }
+
+        public async static Task<string> GetFeedbackSentiment(IJSRuntime Runtime ,Feedbacks feed)
+        {
+            if (feed.SentimentScore == null)
+            {
+                var model = await GetAzureSentiment(feed.Notes);
+                string positivesentiment = ((int)(model.ConfidenceScores.Positive * 100)).ToString();
+                DatabaseHelper.WriteData<string>(Runtime, "Feedbacks/" + feed.Id + "/sentimentscore", positivesentiment);
+                return positivesentiment;
+            }
+            else
+                return feed.SentimentScore;
         }
     }
 }
