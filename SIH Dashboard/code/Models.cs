@@ -13,6 +13,7 @@ namespace SIH_Dashboard
     }
     public class UserData
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public long Phone { get; set; }
         public Roles Role { get; set; }
@@ -32,6 +33,8 @@ namespace SIH_Dashboard
         public string Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
 
     public class Feedbacks
@@ -85,5 +88,11 @@ namespace SIH_Dashboard
         public List<string> options { get; set; }
     }
     public enum QuestionType { LONG, MCQ }
+
+    public class Appointment
+    {
+        public string SchoolCode { get; set; }
+        public string Date { get; set; }
+    }
 
 }
