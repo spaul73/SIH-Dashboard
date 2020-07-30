@@ -23,6 +23,8 @@
           <input type="number" class="form-control mb-4" placeholder="School Code" @bind="rollNo">
           <p class="black-text">Session</p>
           <input type="number" class="form-control mb-4" placeholder="Session" @bind="session">
+          
+
           @if (ErrorMessage != null)
           {
               <div class="alert alert-danger" role="alert">
@@ -69,7 +71,7 @@
             ErrorMessage = "Class Values between 1-12";
             return false;
         }
-        if (rollNo <= 0 )
+        if (rollNo <= 0)
         {
             ErrorMessage = "Roll no must be >=1";
             return false;
@@ -84,12 +86,12 @@
 
     void upload()
     {
-        if(Validate())
+        if (Validate())
         {
             ErrorMessage = null;
             success = true;
-            var record = new StudentRecord() { Class = sclass, Session = session, SchoolCode = schoolcode,RollNumber=rollNo };
-            DatabaseHelper.WriteData(Runtime, "Records/" + GlobalUser.UID,record);
+            var record = new StudentRecord() { Class = sclass, Session = session, SchoolCode = schoolcode, RollNumber = rollNo };
+            DatabaseHelper.WriteData(Runtime, "Records/" + GlobalUser.UID, record);
         }
         StateHasChanged();
     }

@@ -61,6 +61,7 @@ namespace SIH_Dashboard
         public int SchoolCode { get; set; }
         public int TeacherId { get; set; }
         public DateTime UploadedTodays { get; set; }
+        public string Subjects { get; set; }
     }
     public class StudentAttendance
     {
