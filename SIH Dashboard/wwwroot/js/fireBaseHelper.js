@@ -187,19 +187,39 @@ async function GetFeedbacks(path, lmt) {
 
 function UseCaptcha(btnid,Dotnet) {
     firebase.auth().languageCode = 'en';
-
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-        'size': 'normal',
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('otpbtn', {
+        'size': 'invisible',
         'callback': function (response) {
+            // reCAPTCHA solved, allow signInWithPhoneNumber.
             Dotnet.invokeMethodAsync("CPCLK", "__CaptchaCallBack__");
-            // ...
-        },
-        'expired-callback': function () {
-            Dotnet.invokeMethodAsync("CPCLKF", "__CaptchaCallBackF__");
-            // ...
         }
     });
+            
     window.recaptchaVerifier.render().then(function (widgetId) {
         window.recaptchaWidgetId = widgetId;
     });
+}
+
+
+async function SignInPhone(phoneNumber) {
+    try {
+        var appVerifier = window.recaptchaVerifier;
+        window.confirmationResult = await firebase.auth().signInWithPhoneNumber("+91" + phoneNumber, appVerifier);
+        return null;
+    }
+    catch(e)
+    {
+        return e.message;
+    }
+}
+
+async function verifyOpt(otp) {
+    try {
+        var confirmationResult = window.confirmationResult;
+        var user = await confirmationResult.confirm(code);
+            return null;
+    }
+    catch (e) {
+        return e.message;
+    }
 }
