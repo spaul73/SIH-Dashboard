@@ -215,6 +215,7 @@ async function SignInPhone(phoneNumber) {
 
 async function verifyOpt(otp) {
     try {
+        console.log(otp);
         var confirmationResult = window.confirmationResult;
         var user = await confirmationResult.confirm(otp);
             return null;

@@ -29,6 +29,16 @@
 
     DotNetObjectReference<MobileLoginPage> DotNetObject;
 
+    async Task<bool> TestIfVistorPresent()
+    {
+        if (string.IsNullOrWhiteSpace(Number))
+            return false;
+        var dummy=await DatabaseHelper.ReadData<VistorDummy>(Runtime, "VisitorVerification/" + "9354882654" + "/");
+        if (dummy == null)
+            return false;
+        return dummy.verified;
+    }
+
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -46,15 +56,23 @@
     }
     async void PhoneOtpSend()
     {
-        numCopy = Number;
-        if (!string.IsNullOrWhiteSpace(numCopy))
+        var present = await TestIfVistorPresent();
+        if (present)
         {
-            var error = await Runtime.InvokeAsync<string>("SignInPhone", Number);
-            Error = error;
+            numCopy = Number;
+            if (!string.IsNullOrWhiteSpace(numCopy))
+            {
+                var error = await Runtime.InvokeAsync<string>("SignInPhone", Number);
+                Error = error;
+            }
+            else
+            {
+                Error = "Null number";
+            }
         }
         else
         {
-            Error = "Null number";
+            Error = "you are not eligible as Visitor..";
         }
         StateHasChanged();
     }
@@ -71,7 +89,7 @@
                 NavManager.NavigateTo("/");
             }
             else
-            Error = error;
+                Error = error;
         }
         else
         {

@@ -94,5 +94,9 @@ namespace SIH_Dashboard
         public string SchoolCode { get; set; }
         public string Date { get; set; }
     }
+    public class VistorDummy
+    {
+        public bool verified { get; set; }
+    }
 
 }
