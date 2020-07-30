@@ -184,3 +184,22 @@ async function GetFeedbacks(path, lmt) {
     }
     return feeds;
 }
+
+function UseCaptcha(btnid,Dotnet) {
+    firebase.auth().languageCode = 'en';
+
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+        'size': 'normal',
+        'callback': function (response) {
+            Dotnet.invokeMethodAsync("CPCLK", "__CaptchaCallBack__");
+            // ...
+        },
+        'expired-callback': function () {
+            Dotnet.invokeMethodAsync("CPCLKF", "__CaptchaCallBackF__");
+            // ...
+        }
+    });
+    window.recaptchaVerifier.render().then(function (widgetId) {
+        window.recaptchaWidgetId = widgetId;
+    });
+}

@@ -47,7 +47,8 @@
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-info my-4 btn-block blue-gradient  waves-effect" @onclick="LogIn">Log In</button>
-                                    <button  class="btn purple-gradient white-text  waves-effect" @onclick="SignUPClick">Sign Up Instead</button>
+                                    <button class="btn purple-gradient white-text  waves-effect" @onclick="SignUPClick">Sign Up Instead</button>
+                                    <button class="btn purple-gradient white-text  waves-effect" @onclick="SignMobileClick">Login Phone Number (Visitor)</button>
 
 
                                 </div>
@@ -127,6 +128,10 @@
     private void SignUPClick()
     {
         NavigationManager.NavigateTo("/signup");
+    }
+    private void SignMobileClick()
+    {
+        NavigationManager.NavigateTo("/mobilelogin");
     }
 
 }

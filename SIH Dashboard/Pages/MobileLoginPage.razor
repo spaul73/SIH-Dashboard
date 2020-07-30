@@ -1,0 +1,44 @@
+﻿@page "/mobilelogin"
+@inject IJSRuntime Runtime
+<NavBar />
+<div id="recaptcha-container"></div>
+<button class="btn purple-gradient white-text  waves-effect" id="otpbtn">Send OTP</button>
+
+@CaptachaSolved
+
+@code
+{
+        bool CaptachaSolved = false;
+        DotNetObjectReference<MobileLoginPage> DotNetObject;
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            DotNetObject = DotNetObjectReference.Create(this);
+            Capatcha();
+        }
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+
+    async void Capatcha()
+    {
+        await Runtime.InvokeVoidAsync("UseCaptcha","otpbtn",DotNetObject);
+    }
+
+    [JSInvokable("CPCLK")]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+    public async Task __CaptchaCallBack__()
+    {
+        CaptachaSolved = true;
+        StateHasChanged();
+    }
+    [JSInvokable("CPCLKF")]
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+    public async Task __CaptchaCallBackF__()
+    {
+        CaptachaSolved = false;
+        StateHasChanged();
+    }
+}
