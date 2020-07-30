@@ -183,6 +183,7 @@
             Role = (Roles)Enum.Parse(typeof(Roles),Role,true),
             Phone = long.Parse(phoneNumber)
         });
+        GlobalUser.Role = (Roles)Enum.Parse(typeof(Roles),Role,true);
     }
     private void SigninClick()
     {
