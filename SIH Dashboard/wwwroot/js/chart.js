@@ -1,13 +1,13 @@
-function DisplayChart() {
+function DisplayChart(id, container) {
 
 	// Create our graph from the data table and specify a container to put the graph in
-	createGraph('#data-table', '.chart');
+	createGraph(id, container);
 	
 	// Here be graphs
 	function createGraph(data, container) {
 		// Declare some common variables and container elements	
 		var bars = [];
-		var figureContainer = $('<div id="figure"></div>');
+		var figureContainer = $('<div class="figure"></div>');
 		var graphContainer = $('<div class="graph"></div>');
 		var barContainer = $('<div class="bars"></div>');
 		var data = $(data);

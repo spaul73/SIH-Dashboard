@@ -7,46 +7,67 @@
 
 @if (feeds != null)
 {
-    <div id="wrapper">
-        <div class="chart">
-            <h2>School Overview</h2>
-            <table id="data-table" border="1" cellpadding="10" cellspacing="0">
-                <caption>Scores totaled from feedbacks</caption>
-                <thead>
-                    <tr>
-                        <td>&nbsp;</td>
-                        @foreach(string date in dates)
-                        {
-                            <th scope="col">@date</th>
-                        }
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">Category 1</th>
-                        @foreach(int i in category1)
-                        {
-                            <td>@i</td>
-                        }
-                    </tr>
-                    <tr>
-                        <th scope="row">Category 2</th>
-                        @foreach (int i in category2)
-                        {
-                            <td>@i</td>
-                        }
-                    </tr>
-                    <tr>
-                        <th scope="row">Category 3</th>
-                        @foreach (int i in category1)
-                        {
-                            <td>@i</td>
-                        }
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div id="wrapper">
+    <div class="chart">
+        <h2>School Overview</h2>
+        <table id="main-table" class="data-table" border="1" cellpadding="10" cellspacing="0">
+            <thead>
+                <tr>
+                    <td>&nbsp;</td>
+                    @foreach (string date in dates)
+                    {
+                        <th scope="col">@date</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Category 1</th>
+                    @foreach (int i in category1)
+                    {
+                        <td>@i</td>
+                    }
+                </tr>
+                <tr>
+                    <th scope="row">Category 2</th>
+                    @foreach (int i in category2)
+                    {
+                        <td>@i</td>
+                    }
+                </tr>
+                <tr>
+                    <th scope="row">Category 3</th>
+                    @foreach (int i in category1)
+                    {
+                        <td>@i</td>
+                    }
+                </tr>
+            </tbody>
+        </table>
     </div>
+    <div class="sentiment">
+        <table id="table-sentiment" class="data-table" border="1" cellpadding="10" cellspacing="0">
+            <thead>
+                <tr>
+                    <td>&nbsp;</td>
+                    @foreach (string date in dates)
+                    {
+                        <th scope="col">@date</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Sentiment Score</th>
+                    @foreach (string i in sentiment)
+                    {
+                        <td>@i</td>
+                    }
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 }
 else
 {
@@ -72,6 +93,7 @@ else
     private int[] category1 = { 0, 0, 0, 0, 0 };
     private int[] category2 = { 0, 0, 0, 0, 0 };
     private int[] category3 = { 0, 0, 0, 0, 0 };
+    private string[] sentiment = { "0", "0", "0", "0", "0" };
     protected async override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
@@ -82,7 +104,8 @@ else
         {
             if (chartnotmade)
             {
-                await Runtime.InvokeVoidAsync("DisplayChart");
+                await Runtime.InvokeVoidAsync("DisplayChart", "#main-table", ".chart");
+                await Runtime.InvokeVoidAsync("DisplayChart", "#table-sentiment", ".sentiment");
                 chartnotmade = false;
             }
         }
@@ -94,6 +117,7 @@ else
         {
             var feed = feeds[i];
             dates[i] = feed.Date;
+            sentiment[i] = await SentimentalAnalysis.GetFeedbackSentiment(Runtime, feed);
             for (int j = 0; j < 10; j++)
             {
                 int ch = (int)(feed.Feedback[j] - '0');
