@@ -72,7 +72,11 @@ else
         senti = await SentimentalAnalysis.GetFeedbackSentiment(Runtime, feed);
         foreach (char c in feed.Feedback)
         {
-            if (c != '0')
+            if ( c == 't' || c == 'f')
+            {
+                scores.Add((c == 't') ? 10 : 0);
+            }
+            else if (c != '0')
             {
                 scores.Add((int)(c - '0'));
             }
