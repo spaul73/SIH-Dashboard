@@ -31,9 +31,12 @@
     }
     <br />
     <small class="black-text">Images Submitted: </small>
+    <br/>
     @foreach (string i in images)
     {
-        <a href="@i" data-lightbox="feedimages">Image</a>
+        <a href="@i" data-lightbox="feedimages">
+            <img src="@i" class="img-rounded img-thumbnail" width="150" height="150" style="padding:10px">
+        </a>
     }
 </div>
 }
