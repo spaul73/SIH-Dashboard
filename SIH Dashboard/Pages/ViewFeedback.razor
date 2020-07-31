@@ -26,8 +26,14 @@
     @if (feed.Notes != null)
     {
         <small class="black-text">Additional Notes: @feed.Notes</small>
-        <br/>
+        <br />
         <small class="black-text">Sentiment Score: @senti</small>
+    }
+    <br />
+    <small class="black-text">Images Submitted: </small>
+    @foreach (string i in images)
+    {
+        <a href="@i" data-lightbox="feedimages">Image</a>
     }
 </div>
 }
@@ -42,6 +48,7 @@ else
 
     private List<string> questions = null;
     private List<int> scores = new List<int>();
+    private List<string> images = null;
     private Feedbacks feed = null;
     private string username = null;
     private string schoolname = null;
@@ -58,6 +65,7 @@ else
     {
         questions = await DatabaseHelper.ReadList<List<string>>(Runtime, "Questions/");
         feed = await DatabaseHelper.ReadData<Feedbacks>(Runtime, "Feedbacks/" + Id);
+        images = await DatabaseHelper.ReadList<List<string>>(Runtime, "Feedbacks/" + Id + "/images/");
         feed.Id = Id;
         username = await DatabaseHelper.ReadData<string>(Runtime, "Users/" + feed.SubmitterId + "/name");
         schoolname = await DatabaseHelper.ReadData<string>(Runtime, "Schools/" + feed.SchoolCode + "/name");
