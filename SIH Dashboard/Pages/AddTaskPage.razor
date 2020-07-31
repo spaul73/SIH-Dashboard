@@ -7,8 +7,8 @@
 @if (GlobalUser.UID == null || GlobalUser.Role != Roles.Admin)
 {
     NavManager.NavigateTo("/signin");
-
 }
+
 @if (useroptions != null)
 {
     <div class="container my-5 py-5 z-depth-1 card">
@@ -39,13 +39,9 @@
                     <div class="form-row mb-4">
                         <label for="user">Select User</label>
                         <select id="user" class="custom-select d-block w-100" @bind="uid">
-                            @foreach (UserData user in useroptions)
+                            @foreach (string user in useroptions)
                             {
-                                @if (user.Role == Roles.VisitingOfficial)
-                                {
-                                    <option value="@user.Id">@user.Email</option>
-                                }
-
+                                <option value="@user">@user</option>
                             }
                         </select>
                     </div>
@@ -99,7 +95,7 @@ else
     private string schoolcode { get; set; } = "";
     private DateTime date { get; set; }
     private bool firstrender = true;
-    private List<UserData> useroptions = null;
+    private List<string> useroptions = null;
     private List<Schools> schooloptions = null;
     protected override void OnAfterRender(bool firstRender)
     {
@@ -116,7 +112,7 @@ else
     async void LoadData()
     {
         schooloptions = await DatabaseHelper.ReadList<List<Schools>>(Runtime, "Schools/");
-        useroptions = await DatabaseHelper.ReadList<List<UserData>>(Runtime, "Users/");
+        useroptions = await Runtime.InvokeAsync<List<string>>("GetIds", "VisitorVerification/", 0);
         StateHasChanged();
     }
     void AddTask()
