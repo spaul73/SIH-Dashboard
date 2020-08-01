@@ -18,7 +18,7 @@
 {
     <div class="flex-center">
         <input type="number" @bind-value="schoolCOde" placeholder="Enter School Code" />
-        <button class="btn btn-primary" @onclick="()=> { StateHasChanged(); }">Create</button>
+        <button class="btn btn-primary" @onclick="()=> { StateHasChanged(); }">Enter</button>
 
     </div>
 }
@@ -74,6 +74,10 @@ else
         <textarea type="text" @bind="problemDesc">Description</textarea>
         <br />
         <button class="btn btn-primary" @onclick="CreateIssue">Create</button>
+        if(error!=null)
+        {
+            <div class="alert-danger">@error</div>
+        }
     }
     else
     {
@@ -92,9 +96,11 @@ else
                     @foreach (var item in problem.Statement)
                     {
                         <MyTableValue Color="white">@item.Title</MyTableValue>
-                        <MyTableValue Color="white">@item.Description</MyTableValue>
                         <MyTableValue Color="white">@item.CreatedDate</MyTableValue>
-                        <MyTableValue Color="white">@item.OpenStatus</MyTableValue>
+                        <MyTableValue Color="white">
+                            <IssueViewer SchoolCode="@schoolCOde" Statement="item">
+                             </IssueViewer>
+                    </MyTableValue>
                     }
                 </MyTableItem>
                 }
@@ -105,7 +111,7 @@ else
 
 @code
 {
-    string[] colms = new string[] {"School Code","Problem","Description","Created Date","Open Status" };
+    string[] colms = new string[] {"School Code","Problem","Created Date","View Status" };
 
     string uid;
     string problemDesc = "poor fcilities";
@@ -114,17 +120,29 @@ else
     Roles role;
     int choice = -1;
     List<SchoolProblem> problemsList;
-    void CreateIssue()
+    string error = null;
+    async void CreateIssue()
     {
-        SchoolProblem problem = new SchoolProblem();
-        ProblemStatement problemStatement = new ProblemStatement();
-        problemStatement.Description = problemDesc;
-        problemStatement.Title = title;
-        problemStatement.CreatedDate = DateTime.Now;
-        problemStatement.Uid = "2324242424";
-        problem.Statement.Add(problemStatement);
+        var mod = await TextModerator.GetModerationResult(title+"\t"+problemDesc);
+        if (!mod.Classification.ReviewRecommended)
+        {
+            SchoolProblem problem = new SchoolProblem();
+            ProblemStatement problemStatement = new ProblemStatement();
+            problemStatement.Description = problemDesc;
+            problemStatement.Title = title;
+            problemStatement.CreatedDate = DateTime.Now;
+            problemStatement.Uid = "2324242424";
+            problem.Statement.Add(problemStatement);
 
-        DatabaseHelper.PushData<SchoolProblem>(Runtime, "SchoolIssues/" + schoolCOde, problem);
+            DatabaseHelper.PushData<SchoolProblem>(Runtime, "SchoolIssues/" + schoolCOde, problem);
+            choice = 1;
+            ReadAllSchoolIssues();
+        }
+        else
+        {
+            error = "AI flagged your content obscene or vulgar please contact upload this type of content..";
+        }
+        StateHasChanged();
     }
     void newSelect()
     {

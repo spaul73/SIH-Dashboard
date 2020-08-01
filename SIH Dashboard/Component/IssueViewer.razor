@@ -1,0 +1,63 @@
+﻿
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
+    View Full Issue
+</button>
+
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Issue Tracker</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p class="black-text">School Code : @SchoolCode</p>
+                <p class="black-text">Topic: @Statement.Title</p>
+                <p class="black-text">Description : @Statement.Description</p>
+                <p class="black-text">Created Date: @Statement.CreatedDate</p>
+                <p class="black-text">Status : @Statement.OpenStatus</p>
+                <p class="black-text">Is Anonymous : @Statement.isAnonymous</p>
+
+                @if (ErrorMessage != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ErrorMessage
+                    </div>
+                }
+                @if (success)
+                {
+                    <div class="alert alert-success" role="alert">
+                        Successfully updated your profile
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                @if (Statement.Uid!=GlobalUser.UID)
+                {
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" @onclick="Upload">Close Issue</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public ProblemStatement Statement { get; set; }
+    [Parameter]
+    public List<SchoolProblem> SchoolProblems { get; set; }
+    [Parameter]
+    public string SchoolCode { get; set; }
+    string ErrorMessage;
+    bool success = false;
+    void Upload()
+    {
+
+    }
+}
