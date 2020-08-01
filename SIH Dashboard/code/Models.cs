@@ -115,10 +115,6 @@ namespace SIH_Dashboard
 
     public class SchoolProblem
     {
-        public List<ProblemStatement> Statement { get; set; } = new List<ProblemStatement>();
-    }
-    public class ProblemStatement
-    {
         public string Title { get; set; }
         public string Description { get; set; }
         public string Uid { get; set; }

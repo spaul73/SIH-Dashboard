@@ -5,24 +5,24 @@
 {
     if (Statement.OpenStatus == 0)
     {
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#basicExampleModal">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#basicExampleModal_@id">
             View Full Issue
         </button>
     }
     else
     {
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#basicExampleModal">
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#basicExampleModal_@id">
             View Full Issue
         </button>
     }
 }
 
-<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="basicExampleModal_@id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel_@id"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Issue Tracker</h5>
+                <h5 class="modal-title" id="exampleModalLabel_@id">Issue Tracker</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -34,20 +34,6 @@
                 <p class="black-text">Description : @Statement.Description</p>
                 <p class="black-text">Created Date: @Statement.CreatedDate</p>
                 <p class="black-text">Status : @Statement.OpenStatus</p>
-                <p class="black-text">Is Anonymous : @Statement.isAnonymous</p>
-
-                @if (ErrorMessage != null)
-                {
-                    <div class="alert alert-danger" role="alert">
-                        @ErrorMessage
-                    </div>
-                }
-                @if (success)
-                {
-                    <div class="alert alert-success" role="alert">
-                        Successfully updated your profile
-                    </div>
-                }
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -63,38 +49,35 @@
 
 @code {
     [Parameter]
-    public ProblemStatement Statement { get; set; }
+    public SchoolProblem Statement { get; set; }
     [Parameter]
     public string SchoolCode { get; set; }
+    [Parameter]
+    public string Uid { get; set; }
+    [Parameter]
+    public string Decription { get; set; }
+
+    public string id =>Statement.Title.Replace(' ','_');
     string ErrorMessage;
     bool success = false;
+    [Parameter]
+    public EventCallback DataChanged { get; set; }
+
     async void Upload()
     {
         var ids = await DatabaseHelper.GetIds(Runtime, "SchoolIssues/" + SchoolCode);
-        bool exitout = false;
         foreach (var item in ids)
         {
-            var user = await DatabaseHelper.ReadData<SchoolProblem>(Runtime, "SchoolIssues/" + SchoolCode + "/" + item);
-            int count = 0;
-            foreach (var statement in user.Statement)
+            var statement = await DatabaseHelper.ReadData<SchoolProblem>(Runtime, "SchoolIssues/" + SchoolCode + "/" + item);
+            if (statement.Title == Statement.Title && statement.Uid == Statement.Uid && statement.Description == statement.Description)
             {
-
-                if (statement.Title == Statement.Title && statement.Uid == Statement.Uid && statement.Description == statement.Description)
-                {
-                    user.Statement[count].OpenStatus = 0;
-                    DatabaseHelper.WriteData<SchoolProblem>(Runtime, "SchoolIssues/" + SchoolCode + "/" + item, user);
-                    exitout = true;
-                    break;
-                }
-
-                count++;
-            }
-            if (exitout)
-            {
+                statement.OpenStatus = 0;
+                DatabaseHelper.WriteData<SchoolProblem>(Runtime, "SchoolIssues/" + SchoolCode + "/" + item, statement);
                 break;
             }
 
         }
         StateHasChanged();
+        await DataChanged.InvokeAsync(this);
     }
 }
