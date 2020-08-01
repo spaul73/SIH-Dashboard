@@ -124,7 +124,7 @@ namespace SIH_Dashboard
         public bool OpenStatus { get; set; } = true;
         public DateTime CreatedDate { get; set; }
         public DateTime CloseDate { get; set; }
-
+        public bool isAnonymous { get; set; }
     }
 
 }
