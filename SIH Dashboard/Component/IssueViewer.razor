@@ -1,7 +1,21 @@
 ﻿
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">
-    View Full Issue
-</button>
+@inject IJSRuntime Runtime
+
+@if (Statement != null)
+{
+    if (Statement.OpenStatus == 0)
+    {
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#basicExampleModal">
+            View Full Issue
+        </button>
+    }
+    else
+    {
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#basicExampleModal">
+            View Full Issue
+        </button>
+    }
+}
 
 <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -38,7 +52,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                @if (Statement.Uid!=GlobalUser.UID)
+                @if (Statement.Uid != GlobalUser.UID)
                 {
                     <button type="button" class="btn btn-danger" data-dismiss="modal" @onclick="Upload">Close Issue</button>
                 }
@@ -51,13 +65,36 @@
     [Parameter]
     public ProblemStatement Statement { get; set; }
     [Parameter]
-    public List<SchoolProblem> SchoolProblems { get; set; }
-    [Parameter]
     public string SchoolCode { get; set; }
     string ErrorMessage;
     bool success = false;
-    void Upload()
+    async void Upload()
     {
+        var ids = await DatabaseHelper.GetIds(Runtime, "SchoolIssues/" + SchoolCode);
+        bool exitout = false;
+        foreach (var item in ids)
+        {
+            var user = await DatabaseHelper.ReadData<SchoolProblem>(Runtime, "SchoolIssues/" + SchoolCode + "/" + item);
+            int count = 0;
+            foreach (var statement in user.Statement)
+            {
 
+                if (statement.Title == Statement.Title && statement.Uid == Statement.Uid && statement.Description == statement.Description)
+                {
+                    user.Statement[count].OpenStatus = 0;
+                    DatabaseHelper.WriteData<SchoolProblem>(Runtime, "SchoolIssues/" + SchoolCode + "/" + item, user);
+                    exitout = true;
+                    break;
+                }
+
+                count++;
+            }
+            if (exitout)
+            {
+                break;
+            }
+
+        }
+        StateHasChanged();
     }
 }

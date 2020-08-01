@@ -95,11 +95,12 @@ else
                     <MyTableValue Color="white">@schoolCOde</MyTableValue>
                     @foreach (var item in problem.Statement)
                     {
+                        var myitem = item;
                         <MyTableValue Color="white">@item.Title</MyTableValue>
                         <MyTableValue Color="white">@item.CreatedDate</MyTableValue>
                         <MyTableValue Color="white">
-                            <IssueViewer SchoolCode="@schoolCOde" Statement="item">
-                             </IssueViewer>
+                            <IssueViewer SchoolCode="@schoolCOde" Statement="myitem">
+                         </IssueViewer>
                     </MyTableValue>
                     }
                 </MyTableItem>
@@ -155,8 +156,12 @@ else
         ReadAllSchoolIssues();
         StateHasChanged();
     }
+   
     async void ReadAllSchoolIssues()
     {
+        if (schoolCOde == null)
+            return;
+
         problemsList= await DatabaseHelper.ReadList<List<SchoolProblem>>(Runtime, "SchoolIssues/" + schoolCOde);
         StateHasChanged();
     }
