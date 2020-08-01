@@ -47,8 +47,8 @@
                         </select>
                     </div>
                     <div class="form-row mb-4">
-                        <label for="user">Select District</label>
-                        <select id="user" class="custom-select d-block w-100" value="@districtselected" @onchange="LoadDistrictSchools">
+                        <label for="dis">Select District</label>
+                        <select id="dis" class="custom-select d-block w-100" value="@districtselected" @onchange="LoadDistrictSchools">
                             <option value="">Select District</option>
                             @foreach (string district in districtoptions)
                             {
@@ -58,8 +58,8 @@
                         </select>
                     </div>
                     <div class="form-row mb-4">
-                        <label for="user">Select School</label>
-                        <select id="user" class="custom-select d-block w-100" @bind="schoolcode">
+                        <label for="sch">Select School</label>
+                        <select id="sch" class="custom-select d-block w-100" @bind="schoolcode">
                             <option value="">Select School</option>
                             @foreach (Schools school in schooloptions)
                             {
