@@ -2,25 +2,96 @@
 @inject IJSRuntime Runtime
 @inject NavigationManager NavManager
 
-<NavBar/>
+<NavBar />
 
 @*@if (GlobalUser.UID == null)
-{
-    NavManager.NavigateTo("/signin");
+    {
+        NavManager.NavigateTo("/signin");
 
+    }
+    else
+    {
+
+    }*@
+
+@if (schoolCOde == null)
+{
+    <div class="flex-center">
+        <input type="number" @bind-value="schoolCOde" placeholder="Enter School Code" />
+    </div>
 }
 else
 {
+    if (choice == -1)
+    {
+        <!-- #intro -->
 
-}*@
+        <main id="main">
+
+
+
+
+            <!--==========================
+              Services Section
+            ============================-->
+            <section id="services" class="section-bg">
+                <div class="container">
+                    <div class="row">
+
+                        @*@if (GlobalUser.Role != Roles.Admin)
+                            {*@
+                        <div @onclick="@newSelect" class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                            <div class="box">
+                                <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
+                                <h4 class="title">New Issue</h4>
+                                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+                            </div>
+                        </div>
+                        @*}*@
+                        <div @onclick="viewSelect" class="col-md-6 col-lg-4 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                            <div class="box">
+                                <div class="icon" style="background: #e6fdfc;"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
+                                <h4 class="title">View Issues</h4>
+                                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section><!-- #services -->
+        </main>
+
+
+
+    }
+    else if (choice == 0)
+    {
+        <input type="text" @bind-value="title" placeholder="Enter Topic" />
+        <textarea type="text" @bind="problem" ></textarea>
+        <br />
+        <button class="btn btn-primary" @onclick="print">Create</button>
+    }
+    else
+    {
+        <p>view issue</p>
+    }
+}
 
 @code
 {
     string uid;
     string problem;
     string title;
-    string schoolCOde="1234";
+    string schoolCOde = null;
     Roles role;
+    int choice = -1;
+
+    void print()
+    {
+        Console.WriteLine(title);
+        Console.WriteLine(problem);
+    }
 
     void CreateIssue()
     {
@@ -30,11 +101,21 @@ else
         problemStatement.Uid = "2324242424";
         problem.Statement.Add(problemStatement);
 
-        DatabaseHelper.PushData<SchoolProblem>(Runtime,"SchoolIssues/"+schoolCOde,problem);
+        DatabaseHelper.PushData<SchoolProblem>(Runtime, "SchoolIssues/" + schoolCOde, problem);
+    }
+    void newSelect()
+    {
+        choice = 0;
+        StateHasChanged();
+    }
+    void viewSelect()
+    {
+        choice = 1;
+        StateHasChanged();
     }
     async void ReadAllSchoolIssues()
     {
-        var v=await DatabaseHelper.ReadList<List<SchoolProblem>>(Runtime, "SchoolIssues/" + schoolCOde);
+        var v = await DatabaseHelper.ReadList<List<SchoolProblem>>(Runtime, "SchoolIssues/" + schoolCOde);
         Console.WriteLine(v.Count);
     }
     protected override void OnInitialized()
