@@ -46,6 +46,10 @@ namespace SIH_Dashboard
         {
             return await Runtime.InvokeAsync<string[]>("GetIds", path, limit);
         }
+        public async static Task<T> GetSchools<T>(IJSRuntime Runtime, string path, int lmt = 0)
+        {
+            return await Runtime.InvokeAsync<T>("GetSchools", path, lmt);
+        }
 
     }
 }
