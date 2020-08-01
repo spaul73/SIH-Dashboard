@@ -121,7 +121,10 @@ namespace SIH_Dashboard
         public string Title { get; set; }
         public string Description { get; set; }
         public string Uid { get; set; }
-        public bool CloseStatus { get; set; }
+        public bool OpenStatus { get; set; } = true;
+        public DateTime CreatedDate { get; set; }
+        public DateTime CloseDate { get; set; }
+
     }
 
 }
