@@ -118,6 +118,7 @@ namespace SIH_Dashboard
     }
     public class ProblemStatement
     {
+        public string Title { get; set; }
         public string Description { get; set; }
         public string Uid { get; set; }
         public bool CloseStatus { get; set; }
