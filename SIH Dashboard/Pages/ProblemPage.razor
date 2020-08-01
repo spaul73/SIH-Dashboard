@@ -151,13 +151,14 @@ else
         ReadAllSchoolIssues();
         StateHasChanged();
     }
-   
+
     async void ReadAllSchoolIssues()
     {
         if (schoolCOde == null)
             return;
 
         problemsList= await DatabaseHelper.ReadList<List<SchoolProblem>>(Runtime, "SchoolIssues/" + schoolCOde);
+        problemsList=problemsList.OrderByDescending(x => x.CreatedDate).ToList();
         StateHasChanged();
     }
     protected override void OnInitialized()

@@ -38,7 +38,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-                @if (Statement.Uid != GlobalUser.UID)
+                @if (Statement.Uid == GlobalUser.UID)
                 {
                     <button type="button" class="btn btn-danger" data-dismiss="modal" @onclick="Upload">Close Issue</button>
                 }
