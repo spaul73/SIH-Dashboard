@@ -109,8 +109,18 @@ namespace SIH_Dashboard
         public bool IsClosedStatus { get; set; }
         public DateTime CloseDateTime { get; set; }
         public string CloseStudent { get; set; }
-
         public bool IsAnonymous { get; set; }
+    }
+
+    public class SchoolProblem
+    {
+        public List<ProblemStatement> Statement { get; set; } = new List<ProblemStatement>();
+    }
+    public class ProblemStatement
+    {
+        public string Description { get; set; }
+        public string Uid { get; set; }
+        public bool CloseStatus { get; set; }
     }
 
 }

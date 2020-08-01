@@ -4,7 +4,7 @@
 
 <NavBar/>
 
-@if (GlobalUser.UID == null)
+@*@if (GlobalUser.UID == null)
 {
     NavManager.NavigateTo("/signin");
 
@@ -12,22 +12,38 @@
 else
 {
 
-}
+}*@
 
 @code
 {
     string uid;
     string problem;
     string title;
-    int schoolCOde;
+    string schoolCOde="1234";
     Roles role;
 
-    void CreateRole()
+    void CreateIssue()
     {
+        SchoolProblem problem = new SchoolProblem();
+        ProblemStatement problemStatement = new ProblemStatement();
+        problemStatement.Description = "bad school";
+        problemStatement.Uid = "2324242424";
+        problem.Statement.Add(problemStatement);
 
+        DatabaseHelper.PushData<SchoolProblem>(Runtime,"SchoolIssues/"+schoolCOde,problem);
+    }
+    async void ReadAllSchoolIssues()
+    {
+        var v=await DatabaseHelper.ReadList<List<SchoolProblem>>(Runtime, "SchoolIssues/" + schoolCOde);
+        Console.WriteLine(v.Count);
+    }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        ReadAllSchoolIssues();
     }
     bool Valid()
     {
-
+        return false;
     }
 }
