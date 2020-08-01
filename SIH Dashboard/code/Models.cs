@@ -100,4 +100,17 @@ namespace SIH_Dashboard
         public bool verified { get; set; }
     }
 
+    public class Problem
+    {
+        public Roles UploaderRole { get; set; }
+        public string Uid { get; set; }
+        public string Title { get; set; }
+        public string ProblemStatement { get; set; }
+        public bool IsClosedStatus { get; set; }
+        public DateTime CloseDateTime { get; set; }
+        public string CloseStudent { get; set; }
+
+        public bool IsAnonymous { get; set; }
+    }
+
 }

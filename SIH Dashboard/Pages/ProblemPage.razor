@@ -1,0 +1,33 @@
+﻿@page "/problems"
+@inject IJSRuntime Runtime
+@inject NavigationManager NavManager
+
+<NavBar/>
+
+@if (GlobalUser.UID == null)
+{
+    NavManager.NavigateTo("/signin");
+
+}
+else
+{
+
+}
+
+@code
+{
+    string uid;
+    string problem;
+    string title;
+    int schoolCOde;
+    Roles role;
+
+    void CreateRole()
+    {
+
+    }
+    bool Valid()
+    {
+
+    }
+}
