@@ -128,9 +128,5 @@ namespace SIH_Dashboard
         public string question { get; set; }
         public bool TrueFalse { get; set; } = false;
     }
-    public class StudentFeedbackResponse
-    {
-        public Dictionary<string, int> QuestionIds = new Dictionary<string, int>();
-    }
 
 }
