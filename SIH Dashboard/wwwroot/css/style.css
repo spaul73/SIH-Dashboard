@@ -1741,3 +1741,42 @@ font-size: 29px;
   
 }
 /* _________________________________ */
+
+
+/* ProblemPage UI */
+/* -------------------------- */
+#jumboimg{
+  background: url(./img/pen1.svg);
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  width: 9rem;
+  background-position: center;
+  position: absolute;
+  background-size: 86px;
+  margin-left: 75rem;
+  margin-top: 10rem;
+  background-color: #f5faff;
+}
+#problemjumbo{
+background-color:#f5faff;
+color: #b8e3ef;
+box-shadow: 11px 10px 20px;
+width: 50%;
+margin-left: 27rem;
+margin-top: 7rem;
+padding: 7rem 0rem;
+border-radius: 20px;
+font-weight: 900;
+}
+
+#inputprob{
+  margin-left: 11rem;
+  width: 31rem;
+  height: 4rem;
+  margin-bottom: 11px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+
+/* ----------------------- */
