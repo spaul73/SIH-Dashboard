@@ -59,6 +59,7 @@ namespace SIH_Dashboard
         public string Notes { get; set; }
         public string Feedback { get; set; }
         public string SentimentScore { get; set; }
+        public bool Verified { get; set; }
     }
     public class StudentRecord
     {
