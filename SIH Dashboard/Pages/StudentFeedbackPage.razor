@@ -1,0 +1,83 @@
+﻿@page "/studentfeedback"
+@inject NavigationManager NavManager
+@inject IJSRuntime Runtime
+
+@if (GlobalUser.UID == null)
+{
+    NavManager.NavigateTo("/signin");
+
+}
+@if (GlobalUser.Role == Roles.Student)
+{
+    if(record==null)
+    {
+        if (studentRecordNull)
+        {
+            <NewStudentRecordDialog/>
+        }
+        else
+        {
+        <p><br />Fetching...</p>
+        }
+    }
+    else
+    {
+        if(hasSubmittedThisYear)
+        {
+            <p>FeedBackView</p>
+        }
+        else
+        {
+            <p>Load Questions</p>
+        }
+    }
+}
+
+@code 
+{   
+
+    StudentRecord record;
+    string path = "StudentFeedback/";
+    string responsePath = "StudentFeedbackResponse/";
+    bool studentRecordNull = false;
+    bool hasSubmittedThisYear ;
+
+    protected override Task OnInitializedAsync()
+    {
+        FetchRecord();
+        return base.OnInitializedAsync();
+    }
+    async void FetchRecord()
+    {
+        if (GlobalUser.Role == Roles.Student)
+        {
+            record = await DatabaseHelper.ReadData<StudentRecord>(Runtime, "Records/" + GlobalUser.UID);
+            if(record==null)
+            {
+                studentRecordNull = true;
+            }
+            else
+            {
+                hasSubmittedThisYear = await CheckYearFeedback();
+            }
+            StateHasChanged();
+        }
+
+    }
+
+    async Task<bool> CheckYearFeedback()
+    {
+        var res = await DatabaseHelper.ReadData<StudentFeedbackResponse>(Runtime,responsePath+record.SchoolCode
+            +"/"+record.Session+"/"+ record.RollNumber);
+
+        if(res==null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+}
