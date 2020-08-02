@@ -7,7 +7,7 @@
 
 
 
-<div class="dashboard-main-wrapper">
+<div class="container">
 
     <!-- ============================================================== -->
     <!-- wrapper  -->
@@ -37,7 +37,7 @@
                             <h5 class="card-header">Visitor Category</h5>
                             <div class="card-body">
                                 <div class="ct-chart-category ct-golden-section" style="height: 315px;">
-                                    <canvas id="visitorcategory" style="max-width:800px"></canvas>
+                                    <canvas id="visitorcategory" width="100%" height="100%"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -361,9 +361,9 @@
 
                     <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
                         <div class="card">
-                            <h5 class="card-header">Something</h5>
+                            <h5 class="card-header">Student Submitted</h5>
                             <div class="card-body">
-                                <canvas id="something" style="max-width:800px"></canvas>
+                                <canvas id="studentcategory" style="max-width:800px"></canvas>
                             </div>
                             <div class="card-footer">
                                 <p class="display-7 font-weight-bold"><span class="text-primary d-inline-block"></span><span class="text-success float-right"></span></p>
@@ -382,8 +382,8 @@
 
 @code
 {
-        [Parameter]
-        public string SchoolCode { get; set; }
+    [Parameter]
+    public string SchoolCode { get; set; }
     private string categoryselected { get; set; }
     private List<Feedbacks> feeds = null;
     private bool chartnotmade = true;
@@ -419,6 +419,7 @@
         school = await DatabaseHelper.ReadData<Schools>(Runtime, "Schools/" + SchoolCode);
         int[] chartdata = { school.CategoryScores.Safety, school.CategoryScores.Academics, school.CategoryScores.Health, school.CategoryScores.Discipline, school.CategoryScores.Meals, school.CategoryScores.Activities };
         await Runtime.InvokeVoidAsync("DisplayDoughnutChart", "visitorcategory", doughnutlabels, chartdata);
+        await Runtime.InvokeVoidAsync("DisplayDoughnutChart", "studentcategory", doughnutlabels, chartdata);
         for (int i = 0; i < feeds.Count; i++)
         {
             var feed = feeds[i];
