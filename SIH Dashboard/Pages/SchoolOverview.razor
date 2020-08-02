@@ -6,6 +6,10 @@
 <NavBar />
 
 <div class="container">
+    @if(school != null)
+    {
+        <h2>@school.Name</h2>
+    }
     <canvas id="doughnutChart" style="max-width:500px"></canvas>
     @if (feeds != null)
     {
