@@ -4,7 +4,7 @@
 
 <NavBar />
 
-@*@if (GlobalUser.UID == null)
+@if (GlobalUser.UID == null)
     {
         NavManager.NavigateTo("/signin");
 
@@ -12,7 +12,7 @@
     else
     {
 
-    }*@
+    }
 
 @if (schoolCOde == null)
 {
@@ -93,16 +93,13 @@ else
                 {
                 <MyTableItem>
                     <MyTableValue Color="white">@schoolCOde</MyTableValue>
-                    @foreach (var item in problem.Statement)
-                    {
-                        var myitem = item;
-                        <MyTableValue Color="white">@item.Title</MyTableValue>
-                        <MyTableValue Color="white">@item.CreatedDate</MyTableValue>
-                        <MyTableValue Color="white">
-                            <IssueViewer SchoolCode="@schoolCOde" Statement="myitem">
-                         </IssueViewer>
+                    <MyTableValue Color="white">@problem.Title</MyTableValue>
+                    <MyTableValue Color="white">@problem.CreatedDate</MyTableValue>
+                    <MyTableValue Color="white">
+                        
+                        <IssueViewer SchoolCode="@schoolCOde" Statement="problem" DataChanged="ReadAllSchoolIssues">
+                        </IssueViewer>
                     </MyTableValue>
-                    }
                 </MyTableItem>
                 }
             </MyTableHolder>
@@ -127,21 +124,19 @@ else
         var mod = await TextModerator.GetModerationResult(title+"\t"+problemDesc);
         if (!mod.Classification.ReviewRecommended)
         {
-            SchoolProblem problem = new SchoolProblem();
-            ProblemStatement problemStatement = new ProblemStatement();
+            SchoolProblem problemStatement = new SchoolProblem();
             problemStatement.Description = problemDesc;
             problemStatement.Title = title;
             problemStatement.CreatedDate = DateTime.Now;
-            problemStatement.Uid = "2324242424";
-            problem.Statement.Add(problemStatement);
+            problemStatement.Uid = GlobalUser.UID;
 
-            DatabaseHelper.PushData<SchoolProblem>(Runtime, "SchoolIssues/" + schoolCOde, problem);
+            DatabaseHelper.PushData<SchoolProblem>(Runtime, "SchoolIssues/" + schoolCOde, problemStatement);
             choice = 1;
             ReadAllSchoolIssues();
         }
         else
         {
-            error = "AI flagged your content obscene or vulgar please contact upload this type of content..";
+            error = "AI flagged your content obscene or , vulgar direct targetted please contact admin in case of any technical issue";
         }
         StateHasChanged();
     }
@@ -156,13 +151,14 @@ else
         ReadAllSchoolIssues();
         StateHasChanged();
     }
-   
+
     async void ReadAllSchoolIssues()
     {
         if (schoolCOde == null)
             return;
 
         problemsList= await DatabaseHelper.ReadList<List<SchoolProblem>>(Runtime, "SchoolIssues/" + schoolCOde);
+        problemsList=problemsList.OrderByDescending(x => x.CreatedDate).ToList();
         StateHasChanged();
     }
     protected override void OnInitialized()
