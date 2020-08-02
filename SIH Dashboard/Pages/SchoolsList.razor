@@ -9,18 +9,21 @@
 
 @if (districtoptions != null)
 {
-    <div class="container">
-        <h5>Schools</h5>
-        <address>Select District</address>
-        <select class="custom-select d-block w-100" style="max-width:200px" value="@districtselected" @onchange="LoadDistrictSchools">
+    <div class="container" id="schoolcontainer">
+        <h5 id="schoolh5">Schools</h5>
+        <address id="schooladd">Select District</address>
+        <select id="schoolsel" class="custom-select d-block w-100" style="max-width:200px; border-radius: 20px" value="@districtselected" @onchange="LoadDistrictSchools">
             <option value="">Select District</option>
+   
             @foreach (string district in districtoptions)
             {
                 <option value="@district">@district</option>
             }
         </select>
+   
         @if (schools != null)
-        {
+        {   
+            <div id="schoolsecondcontainer">
             <DataTable Searchable="true">
                 <TableHolder ColumnNames="TableOption">
                     @foreach (var school in schools)
@@ -34,9 +37,11 @@
                     }
                 </TableHolder>
             </DataTable>
+            </div>
         }
-    </div>
+  </div>   
 }
+ 
 else
 {
     @if (firstrender)
@@ -50,6 +55,11 @@ else
         <p>Failed to fetch profile data</p>
     }
 }
+@* ____________ *@
+
+
+@* ______________ *@
+
 
 @code {
     private bool firstrender = true;
