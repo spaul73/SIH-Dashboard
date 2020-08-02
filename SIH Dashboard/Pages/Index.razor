@@ -81,7 +81,7 @@
                     </div>
                 </div>
 
-                @if (GlobalUser.UID == null || (GlobalUser.Role == Roles.Student))
+                @if (GlobalUser.UID != null || (GlobalUser.Role == Roles.Student))
                 {
                     <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
                         <div class="box">
@@ -91,7 +91,7 @@
                         </div>
                     </div>
                 }
-                @if (GlobalUser.UID == null || (GlobalUser.Role == Roles.Teacher))
+                @if (GlobalUser.UID != null || (GlobalUser.Role == Roles.Teacher))
                 {
                     <div class="col-md-6 col-lg-4 wow bounceInUp" data-wow-duration="1.4s">
                         <div class="box">
