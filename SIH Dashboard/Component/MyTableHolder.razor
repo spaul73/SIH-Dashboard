@@ -27,11 +27,8 @@
       box-shadow: none;
     }
     .card-body{
-        
-	margin-left: 24rem;
+	@* margin-left: 24rem; *@
 	border-radius: 20px;
-
-
     }
 </style>
 @code
@@ -43,6 +40,6 @@
     [Parameter]
     public bool Editable { get; set; } = false;
     [Parameter]
-    public string HeaderColor { get; set; } = "orange-text";
+    public string HeaderColor { get; set; } = "red-text";
 
 }

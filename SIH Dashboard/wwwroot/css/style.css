@@ -1779,4 +1779,67 @@ font-weight: 900;
 }
 
 
-/* ----------------------- */
+/* ----------------------- */ #overviewcard{
+        margin-top: 24px;
+        border-radius: 8px;
+      
+    }
+    #overviewcontainer{
+    margin-top: 5px;
+    background: aliceblue;
+    border-radius: 20px;
+    box-shadow: 14px 32px 37px;
+    }
+
+    /* _______________________ */
+    /* School Overview */
+  #overviewcard{
+      margin-top: 24px;
+      border-radius: 8px;
+  }
+
+  #overviewcontainer{
+  margin-top: 5px;
+  background: aliceblue;
+  border-radius: 20px;
+  box-shadow: 14px 32px 37px;
+  }
+
+  #h2overview{
+    font-size: 3rem;
+    text-align: center;
+    font-family: inherit;
+    background: white;
+    border-radius: 2rem;
+    width: 42rem;
+    margin-left: 12rem;
+    margin-top: 2rem;
+    }
+
+  @media only screen and (max-width:768px)
+  {
+    #h2overview {
+      font-size: 3rem;
+      text-align: center;
+      font-family: inherit;
+      background: white;
+      border-radius: 2rem;
+      width: 27rem;
+      margin-left: 7rem;
+      margin-top: 2rem;
+    }
+  }
+  @media only screen and (max-width: 375px)
+  {
+    #h2overview {
+      font-size: 3rem;
+      text-align: center;
+      font-family: inherit;
+      background: white;
+      border-radius: 2rem;
+      width: 19rem;
+      margin-left: 1rem;
+      margin-top: 2rem;
+    }
+  }
+    /* _____________________________ */

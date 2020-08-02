@@ -5,9 +5,24 @@
 <link rel="stylesheet" href="css/chart-table.css">
 <NavBar />
 
+<style>
+ 
+    .card-header{
+        background: black;
+        color: white;
+    }
+    h5{
+	font-weight: bolder;
+	font-family: inherit;
+    text-align: center;
+    }
 
+      
+</style>
 
-<div class="container">
+@* <div id="intro"></div> *@
+@* <section id="intro"></section> *@
+<div class="container" id="overviewcontainer">
 
     <!-- ============================================================== -->
     <!-- wrapper  -->
@@ -21,7 +36,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">School Overview @SchoolCode </h2>
+                            <h2 id="h2overview" class="pageheader-title">School Overview @SchoolCode </h2>
                         </div>
                     </div>
                 </div>
@@ -33,7 +48,7 @@
                     <!-- product category  -->
                     <!-- ============================================================== -->
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="card">
+                        <div class="card" style="height: 28rem;" id="overviewcard">
                             <h5 class="card-header">Visitor Category</h5>
                             <div class="card-body">
                                 <div class="ct-chart-category ct-golden-section" style="height: 315px;">
@@ -47,7 +62,7 @@
                     <!-- product sales  -->
                     <!-- ============================================================== -->
                     <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
+                        <div class="card" style="height: 28rem;" id="overviewcard">
                             <div class="card-header">
                                 <!-- <div class="float-right">
                                         <select class="custom-select">
@@ -73,7 +88,7 @@
                         <!-- ============================================================== -->
                         <!-- top perfomimg  -->
                         <!-- ============================================================== -->
-                        <div class="card">
+                        <div class="card" id="overviewcard">
                             <h5 class="card-header">Facilities</h5>
                             <div class="card-body p-0">
                                 <div class="table-responsive">
@@ -145,7 +160,7 @@
                     <!-- ============================================================== -->
                     <!-- ============================================================== -->
                     <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
+                        <div class="card" id="overviewcard">
                             <div class="card-header">
                                 <!-- <div class="float-right">
                                         <select class="custom-select">
@@ -172,7 +187,7 @@
                     <!-- ============================================================== -->
                     <!-- ============================================================== -->
                     <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
+                        <div class="card" id="overviewcard">
                             <div class="card-header">
                                 <!-- <div class="float-right">
                                         <select class="custom-select">
@@ -184,7 +199,7 @@
                                     </div> -->
                                 <h5 class="mb-0">Discipline</h5>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" >
                                 <div class="ct-chart-product ct-golden-section">
                                     <canvas id="discipline" style="max-width:800px"></canvas>
                                 </div>
@@ -215,7 +230,7 @@
                     <!-- ============================================================== -->
                     <!-- ============================================================== -->
                     <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
+                        <div class="card" id="overviewcard">
                             <div class="card-header">
                                 <!-- <div class="float-right">
                                         <select class="custom-select">
@@ -242,7 +257,7 @@
                     <!-- ============================================================== -->
                     <!-- ============================================================== -->
                     <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
+                        <div class="card" id="overviewcard">
                             <div class="card-header">
                                 <!-- <div class="float-right">
                                         <select class="custom-select">
@@ -285,7 +300,7 @@
                     <!-- ============================================================== -->
                     <!-- ============================================================== -->
                     <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
+                        <div class="card" id="overviewcard">
                             <div class="card-header">
                                 <!-- <div class="float-right">
                                         <select class="custom-select">
@@ -312,7 +327,7 @@
                     <!-- ============================================================== -->
                     <!-- ============================================================== -->
                     <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
+                        <div class="card" id="overviewcard">
                             <div class="card-header">
                                 <h5 class="mb-0">Meals</h5>
                             </div>
@@ -348,7 +363,7 @@
                     <!-- category revenue  -->
                     <!-- ============================================================== -->
                     <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
-                        <div class="card">
+                        <div class="card" id="overviewcard">
                             <h5 class="card-header">Student Categories</h5>
                             <div class="card-body">
                                 <canvas id="studentcategory" style="max-width:800px"></canvas>
@@ -360,7 +375,7 @@
                     <!-- ============================================================== -->
 
                     <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
-                        <div class="card">
+                        <div class="card" id="overviewcard">
                             <h5 class="card-header">Student Submitted</h5>
                             <div class="card-body">
                                 <canvas id="studentcategory" style="max-width:800px"></canvas>

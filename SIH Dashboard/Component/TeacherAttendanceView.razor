@@ -36,7 +36,7 @@
                         <MyTableValue Color="white">@sub.TotalClasses</MyTableValue>
                         @if (!hasUploadedToday())
                         {
-                            <MyTableValue Color="white"><input type="checkbox" class="form-control" @bind-value="sub.Todays" /></MyTableValue>
+                            <MyTableValue Color="white"><input id type="checkbox" class="form-control" @bind-value="sub.Todays" /></MyTableValue>
                         }
                         else
                         {
