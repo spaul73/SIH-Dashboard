@@ -1,7 +1,13 @@
 ﻿@page "/verifyfeedback"
 @inject IJSRuntime Runtime
-<NavBar/>
+@inject NavigationManager NavManager
+<NavBar />
 
+@if (GlobalUser.UID == null || GlobalUser.Role != Roles.Admin)
+{
+    NavManager.NavigateTo("/signin");
+
+}
 @if (feeds != null)
 {
     <div class="container">
