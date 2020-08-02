@@ -36,6 +36,17 @@ namespace SIH_Dashboard
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public string District { get; set; }
+        public CategoryScores CategoryScores { get; set; }
+    }
+    public class CategoryScores
+    {
+        public int Safety { get; set; }
+        public int Academics { get; set; }
+        public int Health { get; set; }
+        public int Discipline { get; set; }
+        public int Meals { get; set; }
+        public int Activities { get; set; }
+        public int All { get; set; }
     }
 
     public class Feedbacks
@@ -77,19 +88,6 @@ namespace SIH_Dashboard
         public bool Todays { get; set; }
     }
 
-    public class QuizQuestion
-    {
-        public string id { get; set; }
-        public string date { get; set; }
-        public int schoolCode { get; set; }
-        public string submitterId { get; set; }
-        public string notes { get; set; }
-        public string question { get; set; }
-        public QuestionType type { get; set; }
-        public string assigneeId { get; set; }
-        public List<string> options { get; set; }
-    }
-    public enum QuestionType { LONG, MCQ }
 
     public class Appointment
     {
@@ -122,6 +120,16 @@ namespace SIH_Dashboard
         public DateTime CreatedDate { get; set; }
         public DateTime CloseDate { get; set; }
         public bool isAnonymous { get; set; }
+    }
+    public class QuizQuestion
+    {
+        public string id { get; set; }
+        public string question { get; set; }
+        public bool TrueFalse { get; set; } = false;
+    }
+    public class StudentFeedbackResponse
+    {
+        public Dictionary<string, int> QuestionIds = new Dictionary<string, int>();
     }
 
 }
