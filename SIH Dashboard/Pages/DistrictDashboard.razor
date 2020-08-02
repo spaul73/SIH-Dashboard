@@ -1,0 +1,51 @@
+﻿@page "/district/{District}"
+@inject IJSRuntime Runtime
+@inject NavigationManager NavManager
+<NavBar />
+@if (schools != null)
+{
+    @foreach(Schools school in schools)
+    {
+        @school.Name
+    }
+}
+
+@code {
+    [Parameter]
+    public string District { get; set; }
+
+    private bool firstrender = false;
+    private List<Schools> schools = null;
+    private List<Schools> academicsorted = null;
+    private List<Schools> safetysorted = null;
+    private List<Schools> healthsorted = null;
+    private List<Schools> disciplinesorted = null;
+    private List<Schools> mealssorted = null;
+    private List<Schools> activitiessorted = null;
+    private List<Schools> allsorted = null;
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            LoadSchools();
+        }
+        else
+        {
+            firstrender = false;
+        }
+    }
+    async void LoadSchools()
+    {
+        schools = await DatabaseHelper.GetSchools<List<Schools>>(Runtime, "Districts/" + District);
+        academicsorted = schools.OrderByDescending(x => x.CategoryScores.Academics).ToList();
+        safetysorted = schools.OrderByDescending(x => x.CategoryScores.Safety).ToList();
+        healthsorted = schools.OrderByDescending(x => x.CategoryScores.Health).ToList();
+        disciplinesorted = schools.OrderByDescending(x => x.CategoryScores.Discipline).ToList();
+        mealssorted = schools.OrderByDescending(x => x.CategoryScores.Meals).ToList();
+        activitiessorted = schools.OrderByDescending(x => x.CategoryScores.Activities).ToList();
+        allsorted = schools.OrderByDescending(x => x.CategoryScores.All).ToList();
+        StateHasChanged();
+    }
+
+}
