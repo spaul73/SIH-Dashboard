@@ -57,10 +57,12 @@
             if (yournewAnswers != null)
             {
             <MyTableHolder  HeaderColor="white" ColumnNames="colms">
+                @if (quizQuestions != null)
+                {
                 @foreach (var item in quizQuestions)
                 {
                 <MyTableItem>
-                    <MyTableValue Color="white">@(int.Parse(item.id)+1)</MyTableValue>
+                    <MyTableValue Color="white">@(int.Parse(item.id) + 1)</MyTableValue>
                     <MyTableValue Color="white">@item.question</MyTableValue>
                     <MyTableValue Color="white">
                         @if (item.TrueFalse)
@@ -73,6 +75,7 @@
                         }
                     </MyTableValue>
                 </MyTableItem>
+                }
                 }
             </MyTableHolder>
 
