@@ -1700,3 +1700,44 @@ border-radius: 30px;
   }
 
 /* ---------------------------- */
+
+/* ________________________________ */
+
+#schoolcontainer{
+background: url('../img/spikes.png');
+width: 70%;
+padding: 4rem 2rem 7rem 29rem;
+border-radius: 30px;
+  margin-bottom: 30px;
+  }
+#schoolh5 {
+color: #1bb1dc;
+font-size: 39px;
+font-weight: bold;
+font-family: inherit;
+}
+#schooladd{
+font-size: 29px;
+}
+
+#schoolsecondcontainer{
+    background: white;
+    margin-left: -27rem;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 10px 10px 0px 10px;
+}
+@media only screen and (max-width: 768px)
+{
+  #schoolh5{
+      margin-left: -16rem;
+  }
+  #schooladd{
+      margin-left: -17rem;
+  }
+  #schoolsel{
+      margin-left: -16rem;
+  }
+  
+}
+/* _________________________________ */
