@@ -124,9 +124,6 @@ namespace SIH_Dashboard
     public class QuizQuestion
     {
         public string id { get; set; }
-        public string date { get; set; }
-        public int schoolCode { get; set; }
-        public string submitterId { get; set; }
         public string question { get; set; }
         public bool TrueFalse { get; set; } = false;
     }

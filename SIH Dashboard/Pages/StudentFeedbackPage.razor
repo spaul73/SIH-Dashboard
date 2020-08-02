@@ -2,6 +2,8 @@
 @inject NavigationManager NavManager
 @inject IJSRuntime Runtime
 
+<NavBar/>
+
 @if (GlobalUser.UID == null)
 {
     NavManager.NavigateTo("/signin");
@@ -28,30 +30,82 @@
         }
         else
         {
-            <p>Load Questions</p>
+            if (quizQuestions != null)
+            {
+            <MyTableHolder  HeaderColor="white" ColumnNames="colms">
+                @foreach (var item in quizQuestions)
+                {
+                <MyTableItem>
+                    <MyTableValue Color="white">@(item.id+1)</MyTableValue>
+                    <MyTableValue Color="white">@item.question</MyTableValue>
+                    <MyTableValue>
+                        @if (item.TrueFalse)
+                        {
+                            <input type="checkbox" @bind-value="yournewAnswers[item.id]" />
+                        }
+                        else
+                        {
+                            <input type="number" max="10" @bind-value="yournewAnswers[item.id]" />
+                        }
+                    </MyTableValue>
+                </MyTableItem>
+                }
+            </MyTableHolder>
+
+            <button class="btn btn-primary">Save Changes</button>
+            }
         }
     }
 }
 
 @code 
 {   
+    string[] colms = new string[] { "Question No", "Question", "Your Response" };
 
     StudentRecord record;
-    string path = "StudentFeedback/";
+    string path = "StudentFeedbackQuestion/";
     string responsePath = "StudentFeedbackResponse/";
     bool studentRecordNull = false;
     bool hasSubmittedThisYear ;
+    List<QuizQuestion> quizQuestions;
+    Dictionary<string, int> yournewAnswers=new Dictionary<string, int>();
 
     protected override Task OnInitializedAsync()
     {
         FetchRecord();
         return base.OnInitializedAsync();
     }
+    async void LoadQuestions()
+    {
+        quizQuestions = await DatabaseHelper.ReadData<List<QuizQuestion>>(Runtime, path);
+        if(quizQuestions!=null)
+        {
+            foreach (var item in quizQuestions)
+            {
+                yournewAnswers.Add(item.id, 0);
+            }
+        }
+        StateHasChanged();
+    }
+    //void SaveQuestions()
+    //{
+    //    var qq=new List<QuizQuestion>();
+    //    for (int i = 0; i < 5; i++)
+    //    {
+    //        var q = new QuizQuestion();
+    //        q.id = i.ToString();
+    //        q.question = "Question" + i;
+    //        qq.Add(q);
+    //    }
+    //    DatabaseHelper.WriteData(Runtime, path,qq);
+    //    StateHasChanged();
+    //}
     async void FetchRecord()
     {
         if (GlobalUser.Role == Roles.Student)
         {
-            record = await DatabaseHelper.ReadData<StudentRecord>(Runtime, "Records/" + GlobalUser.UID);
+            var path = "Records/" + GlobalUser.UID;
+            record = await DatabaseHelper.ReadData<StudentRecord>(Runtime, path);
             if(record==null)
             {
                 studentRecordNull = true;
@@ -72,6 +126,7 @@
 
         if(res==null)
         {
+            LoadQuestions();
             return false;
         }
         else
