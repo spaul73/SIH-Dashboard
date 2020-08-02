@@ -140,6 +140,9 @@ function DisplayDoughnutChart(id, labels, chartdata) {
             }]
         },
         options: {
+            legend: {
+                display: false
+            },
             responsive: true
         }
     });
