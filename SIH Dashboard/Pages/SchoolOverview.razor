@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 id="h2overview" class="pageheader-title">School Overview @SchoolCode </h2>
+                            <h2 id="h2overview" class="pageheader-title">School Overview - @(school==null?SchoolCode:school.Name) </h2>
                         </div>
                     </div>
                 </div>
@@ -376,9 +376,9 @@
 
                     <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
                         <div class="card" id="overviewcard">
-                            <h5 class="card-header">Student Submitted</h5>
+                            <h5 class="card-header">Sentiment Scores</h5>
                             <div class="card-body">
-                                <canvas id="studentcategory" style="max-width:800px"></canvas>
+                                <canvas id="sentimentscore" style="max-width:800px"></canvas>
                             </div>
                             <div class="card-footer">
                                 <p class="display-7 font-weight-bold"><span class="text-primary d-inline-block"></span><span class="text-success float-right"></span></p>
@@ -474,6 +474,7 @@
         await Runtime.InvokeVoidAsync("DisplayColumnChart", "safety", "Safety", dates, safety);
         await Runtime.InvokeVoidAsync("DisplayColumnChart", "meals", "Meals", dates, meals);
         await Runtime.InvokeVoidAsync("DisplayLineChart", "allline", dates, academics, discipline, health, activities, safety, meals);
+        await Runtime.InvokeVoidAsync("DisplayColumnChart", "sentimentscore", "Sentiment Scores", dates, sentiment);
         StateHasChanged();
     }
 }
