@@ -10,15 +10,16 @@
     }
 
     h5 {
-        font-weight: bolder;
-        font-family: inherit;
-        text-align: center;
+	font-weight: bolder;
+	font-family: inherit;
+    text-align: center;
+    border-radius: 30px;
     }
 </style>
 
 @* <div id="intro"></div> *@
 @* <section id="intro"></section> *@
-<div class="container" id="overviewcontainer">
+@* <div class="container" id="overviewcontainer"> *@
 
     <!-- ============================================================== -->
     <!-- wrapper  -->
@@ -29,12 +30,152 @@
                 <!-- ============================================================== -->
                 <!-- pageheader  -->
                 <!-- ============================================================== -->
-                <div class="row">
+@* weqaddwadw *@
+<div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            @* <h2 id="h2overview" class="pageheader-title">@(school==null?SchoolCode:school.Name) </h2> *@
+                        </div>
+                    </div>
+                </div>
+                @* =----------------------------------= *@
+                <div class="row" >
+	                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+	                        <div class="card influencer-profile-data">
+	                            <div class="card-body" style="background: whitesmoke;">
+	                                <div class="row">
+	                                    <div class="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-12">
+	                                        <div class="text-center">
+	                                            <img src="./img/school.svg" alt="User Avatar" class="" style="margin-top:12px; height:6rem">
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-xl-10 col-lg-8 col-md-8 col-sm-8 col-12">
+	                                            <div class="user-avatar-info">
+	                                                <div class="m-b-20">
+	                                                    <div class="user-avatar-name">
+	                                                        <h2 id="h2overview" class="mb-1">District Overview - @District </h2>
+                                                            
+	                                                    </div>
+	                                                    <div class="rating-star  d-inline-block">
+	                                                        <i class="fa fa-fw fa-star" style="color: #f3f352;"></i>
+	                                                        <i class="fa fa-fw fa-star" style="color: #f3f352;"></i>
+	                                                        <i class="fa fa-fw fa-star" style="color: #f3f352;"></i>
+	                                                        <i class="fa fa-fw fa-star" style="color: #f3f352;"></i>
+	                                                        <i class="fa fa-fw fa-star" style="color: #f3f352;"></i>
+	                                                        <p class="d-inline-block text-dark">14 Reviews </p>
+	                                                    </div>
+	                                                </div>
+	                                                <!--  <div class="float-right"><a href="#" class="user-avatar-email text-secondary">www.henrybarbara.com</a></div> -->
+	                                                <div class="user-avatar-address">
+	                                                    <p class="border-bottom pb-3">
+	                                                        <span class="d-xl-inline-block d-block mb-2"><i class="fa fa-map-marker-alt mr-2 text-primary "></i>4045 Denver AvenueLos Angeles, CA 90017</span>
+	                                                        <span class="mb-2 ml-xl-4 d-xl-inline-block d-block">Joined date: 23 June, 2018</span>
+	                                                    </p>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <!-- ============================================================== -->
+	                    <!-- end influencer profile  -->
+	                    <!-- ============================================================== -->
+	                    <!-- ============================================================== -->
+	                    <!-- widgets   -->
+	                    <!-- ============================================================== -->
+	                    <div class="row" style="margin-top: 10px;">
+	                        <!-- ============================================================== -->
+	                        <!-- four widgets   -->
+	                        <!-- ============================================================== -->
+	                        <!-- ============================================================== -->
+	                        <!-- total views   -->
+	                        <!-- ============================================================== -->
+	                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+	                            <div class="card">
+	                                <div class="card-body">
+	                                    <div class="d-inline-block">
+	                                        <h5 class="text-muted">Total Students</h5>
+	                                        <h2 class="mb-0"> 40</h2>
+	                                    </div>
+	                                    <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
+	                                        <i class="fa fa-eye fa-fw fa-sm text-info" style="font-size: 2.875rem;"></i>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <!-- ============================================================== -->
+	                        <!-- end total views   -->
+	                        <!-- ============================================================== -->
+	                        <!-- ============================================================== -->
+	                        <!-- total followers   -->
+	                        <!-- ============================================================== -->
+	                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+	                            <div class="card">
+	                                <div class="card-body">
+	                                    <div class="d-inline-block">
+	                                        <h5 class="text-muted">Total Teacher</h5>
+	                                        <h2 class="mb-0"> 2</h2>
+	                                    </div>
+	                                    <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
+	                                        <i class="fa fa-user fa-fw fa-sm text-primary" style="font-size: 2.875rem;"></i>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <!-- ============================================================== -->
+	                        <!-- end total followers   -->
+	                        <!-- ============================================================== -->
+	                        <!-- ============================================================== -->
+	                        <!-- partnerships   -->
+	                        <!-- ============================================================== -->
+	                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+	                            <div class="card">
+	                                <div class="card-body">
+	                                    <div class="d-inline-block">
+	                                        <h5 class="text-muted">Total Score</h5>
+	                                        <h2 class="mb-0">65</h2>
+	                                    </div>
+	                                    <div class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">
+	                                        <i class="fa fa-handshake fa-fw fa-sm text-secondary" style="font-size: 2.875rem;" ></i>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <!-- ============================================================== -->
+	                        <!-- end partnerships   -->
+	                        <!-- ============================================================== -->
+	                        <!-- ============================================================== -->
+	                        <!-- total earned   -->
+	                        <!-- ============================================================== -->
+	                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+	                            <div class="card">
+	                                <div class="card-body">
+	                                    <div class="d-inline-block">
+	                                        <h5 class="text-muted">Total Feedbacks</h5>
+	                                        <h2 class="mb-0"> 14</h2>
+	                                    </div>
+	                                    <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+	                                        <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand" style="font-size: 2.875rem;"></i>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <!-- ============================================================== -->
+	                        <!-- end total earned   -->
+	                        <!-- ============================================================== -->
+	                    </div>~
+
+
+
+                @* -3223plqekqlwla;m;wle *@
+                <div class="row">
+                    @* <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
                             <h2 id="h2overview" class="pageheader-title">District Overview - @District </h2>
                         </div>
-                    </div>
+                    </div> *@
                 </div>
                 <!-- ============================================================== -->
                 <!-- end pageheader  -->
@@ -201,7 +342,7 @@
             <!-- ============================================================== -->
         </div>
         </div>
-    </div>
+    @* </div> *@
 
 @code {
     [Parameter]

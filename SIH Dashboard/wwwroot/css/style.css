@@ -1797,39 +1797,39 @@ font-weight: 900;
 
   #h2overview{
     font-size: 3rem;
-    text-align: center;
+    text-align: left;
     font-family: inherit;
-    background: white;
+    background: transparent;
     border-radius: 2rem;
     width: 42rem;
-    margin-left: 12rem;
+    margin-left: 0rem;
     margin-top: 2rem;
     }
 
   @media only screen and (max-width:768px)
   {
-    #h2overview {
+    #h2overview{
       font-size: 3rem;
-      text-align: center;
+      text-align: left;
       font-family: inherit;
-      background: white;
+      background: transparent;
       border-radius: 2rem;
-      width: 27rem;
-      margin-left: 7rem;
+      width: 42rem;
+      margin-left: 0rem;
       margin-top: 2rem;
-    }
+      }
   }
   @media only screen and (max-width: 375px)
   {
-    #h2overview {
+    #h2overview{
       font-size: 3rem;
-      text-align: center;
+      text-align: left;
       font-family: inherit;
-      background: white;
+      background: transparent;
       border-radius: 2rem;
-      width: 19rem;
-      margin-left: 1rem;
+      width: 42rem;
+      margin-left: 0rem;
       margin-top: 2rem;
-    }
+      }
   }
     /* _____________________________ */
