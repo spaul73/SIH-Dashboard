@@ -1593,8 +1593,7 @@ h6 {
 
 #signincard{
  border-radius: 30px;
- background-image: url("../img/bg11.jpg");
-background-position: left;
+ background: #ebffff;
 }
 .btn{
  border-radius: 20px;
@@ -1633,7 +1632,7 @@ background-position: left;
    }
    #signincard{
     border-radius: 30px;
-    background-image: url("../img/bg11.jpg");
+    background: #ebffff;
     background-position: left;
   }
 
@@ -1653,7 +1652,7 @@ background-position: left;
   }
    #signincard{
     border-radius: 30px;
-    background-image: url("../img/bg11.jpg");
+    background: #ebffff;
 
   }
   #logcontainer{
@@ -1746,15 +1745,15 @@ font-size: 29px;
 /* ProblemPage UI */
 /* -------------------------- */
 #jumboimg{
-  background: url(./img/pen1.svg);
+  background: url('../img/pen1.svg');
   background-repeat: no-repeat;
   border-radius: 50%;
   width: 9rem;
   background-position: center;
   position: absolute;
   background-size: 86px;
-  margin-left: 75rem;
-  margin-top: 10rem;
+  margin-left: 70rem;
+  margin-top: 12rem;
   background-color: #f5faff;
 }
 #problemjumbo{
@@ -1770,7 +1769,7 @@ font-weight: 900;
 }
 
 #inputprob{
-  margin-left: 11rem;
+  margin-left: 8rem;
   width: 31rem;
   height: 4rem;
   margin-bottom: 11px;
@@ -1779,17 +1778,8 @@ font-weight: 900;
 }
 
 
-/* ----------------------- */ #overviewcard{
-        margin-top: 24px;
-        border-radius: 8px;
-      
-    }
-    #overviewcontainer{
-    margin-top: 5px;
-    background: aliceblue;
-    border-radius: 20px;
-    box-shadow: 14px 32px 37px;
-    }
+/* ----------------------- */ 
+
 
     /* _______________________ */
     /* School Overview */
