@@ -25,7 +25,7 @@ namespace SIH_Dashboard
 
     public enum Roles
     {
-        Admin, VisitingOfficial, Teacher, Student, Parent
+        Admin, VisitingOfficial, Teacher, Student, Parent,Anonymous
     }
 
     public class Schools
